@@ -1,0 +1,11 @@
+<% 
+	title = "Zawodnicy" unless title 
+	with_team = false unless with_team
+%>
+<h3><%= title %></h3>
+<ul>
+	<%= 
+		render :partial => 'player', :collection => players_list,
+			:locals => { :with_team => with_team } 
+	%>
+</ul>

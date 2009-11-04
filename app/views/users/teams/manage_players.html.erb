@@ -1,0 +1,49 @@
+<h1><%= @team.name %> - zarządzaj zawodnikami</h1>
+
+<%=	show_page_info("Przy pomocy tej strony możesz zarządzać przynależnością zawodników do drużyny") %>
+
+<div id='manage-players'>
+	<div class='row'>
+		<div id='team-players'>
+			<%= 
+				render :partial => 'players_list', :object => @team.players,
+					:locals => { :title => "Zawodnicy drużyny #{@team.name}" }  
+			%>	
+		</div> <!-- #team-players' -->
+		<div id='other-players'>
+			<%= 
+				render :partial => 'players_list', :object => @user.players.free,
+					:locals => { :title => "Zawodnicy bez drużyny" }
+			%>
+		</div> <!-- #other-players' -->
+		<div id='other-team-players'>
+			<%=
+				render :partial => 'players_list',
+					:object => @user.players.not_free_nor_in_team(@team),
+					:locals => { :title => "Zawodnicy innych drużyn", :with_team => true }
+			%>
+		</div> <!-- #other-team-players -->
+	</div> <!-- .row -->
+</div> <!-- #manage-players -->
+<div id='manage-players-action'>
+	<div class='row'>
+		<div id='add_player'>
+			<h5>Dodaj do drużyny</h5>
+		</div> <!-- #add_player -->
+		<div id='remove_player'>
+			<h5>Usuń z drużyny</h5>
+		</div> <!-- #remove_player -->
+	</div> <!-- .row -->
+</div> <!-- #manage-players-action -->
+<%= 
+	drop_receiving_element("add_player", :accept => "player",
+		:with => "'player_id=' + (element.id.split('-').last())",
+		:url => { :action => :add_player })
+%>
+<%=
+	drop_receiving_element("remove_player", :accept => "player",
+		:with => "'player_id=' + (element.id.split('-').last())",
+		:url => { :action => :remove_player })
+%>
+	
+<%= link_to 'Informacje o drużynie', user_team_path(@user, @team) %>

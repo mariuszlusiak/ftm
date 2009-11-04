@@ -1,0 +1,13 @@
+<% player = player_tooltip %>
+<p>
+	<b>Pozycja na boisku:</b>
+	<%=h player.position ? player.position.description : 'Brak' %>
+</p>
+<p>
+	<b>Data urodzenia:</b>
+	<%=h player.date_of_birth %>
+</p>
+<p>
+	<b>Opis:</b>
+	<%=h truncate(player.description, 80) %>
+</p>

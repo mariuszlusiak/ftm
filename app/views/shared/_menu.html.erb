@@ -1,0 +1,8 @@
+<%= link_to 'Start', '/' %> 
+<% if logged_in? %>
+	| <%= link_to 'Ustwienia', user_path(current_user) %>
+	| <%= link_to 'Wyloguj', logout_path %>
+<% else %>
+	| <%= link_to 'Logowanie', login_path %>
+	| <%= link_to 'Rejestracja', register_path %>
+<% end %>

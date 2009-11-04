@@ -1,0 +1,4 @@
+<li id='team-<%= team.id %>' class='team'>
+  <%= team.name %>
+</li>
+<%= draggable_element("team-#{team.id}", :revert => true) %>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<title>Menedżer Turniejów Piłkarskich</title>
+		<%= javascript_include_tag :defaults %>
+		<%= stylesheet_link_tag('application') %>
+	</head>
+	<body>
+		<div id="header">
+			<%= render :partial => '/shared/header' %>
+		</div><!-- #header -->
+		<div id="menu">
+			<%= render :partial => '/shared/menu' %>
+		</div><!-- #menu -->
+		<div id="main-panel">
+			<div id="container">
+				<div id="content">
+					<% tabnav :main do %>
+					<% if flash[:notice] %>
+						<div id="notice"><%= flash[:notice] %></div>
+					<% end %>
+					<%= yield %>
+					<% end %>
+				</div><!-- #content -->
+				<div id="sidebar">
+					<%= render :partial => '/shared/sidebar' %>
+				</div><!-- #sidebar -->
+			</div><!-- #container -->
+		</div><!-- #main-panel -->
+		<div id="footer">
+			<%= render :partial => '/shared/footer' %>
+		</div><!-- footer -->
+	</body>
+</html>

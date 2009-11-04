@@ -1,0 +1,32 @@
+<h1>Typ turnieju</h1>
+<% if show_page_info? %>
+  <div id="page-info">
+    Wybierz typ turnieju.
+  </div>
+<% end %>
+
+<p>Typ turnieju: Liga</p>
+<% 
+  form_for :tournament_metadata, @metadata, :url => { :action => 'update_type' } do |f|
+%>
+  <p>
+    <%= label_tag 'Ilość drużyn:' %>
+    <%= f.text_field :teams_count %>
+  </p>
+
+  <p>
+    <%= label_tag 'Ilość spotkań między tymi samymi drużynami:' %>
+    <%= f.text_field :games_count %>
+  </p>
+
+  <p>
+    <%= label_tag 'Domyślny czas trwania meczu:' %>
+    <%= f.text_field :default_game_duration %>
+  </p>
+
+  <p>
+    <%= f.submit 'Zapisz' %>
+    <%= f.submit 'Zapisz i przejdź do zarządzania drużynami', :name => 'continue' %>
+  </p>
+<% end %>
+

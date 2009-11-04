@@ -1,0 +1,22 @@
+<h1>Ustawienia</h1>
+
+<% if show_page_info? %>
+	<div id="page-info">
+		Na tej stronie możesz edytować ustawienia profilu.
+	</div>
+<% end %>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label "Nazwa użytkownika" %><br />
+    <%= f.text_field :name %>
+  </p>
+	<p>
+		<label for="show_page_info">Pokazuj informacje o stronach</label>
+		<%= f.check_box :show_page_info %>
+	</p>
+  <p>
+    <%= f.submit 'Zapisz' %>
+  </p>
+<% end %>

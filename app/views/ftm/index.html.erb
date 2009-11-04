@@ -1,0 +1,15 @@
+<% if show_page_info? %>
+	<div id="page-info">
+		Strona główna systemu.
+	</div>
+<% end %>
+<% if logged_in? %>
+	<%= link_to "Turnieje", user_tournaments_path(current_user) %> <br />
+	<%= link_to "Drużyny", user_teams_path(current_user) %> <br />
+	<%= link_to "Zawodnicy", user_players_path(current_user) %> <br />
+	<%= link_to "Osoby", user_people_path(current_user) %>
+<% else %>
+Witamy w aplikacji<br />
+Menedżer Turniejów Piłkarskich<br />
+<%= link_to 'Zaloguj się', login_path %> lub <%= link_to 'zarejestruj', register_path %>
+<% end %>

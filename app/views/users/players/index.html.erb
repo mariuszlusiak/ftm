@@ -1,0 +1,13 @@
+<h1>Lista zawodników</h1>
+<% if show_page_info? %>
+	<div id="page-info">
+		Ta strona przedstawia listę zawodników dodanych przez Ciebie do systemu.
+	</div>
+<% end %>
+
+<div id='players-list'>
+	<%= render :partial => 'players_list', :object => @players %>
+</div> <!-- #players_list -->
+
+<br />
+<%= will_paginate @players %>

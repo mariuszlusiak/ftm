@@ -1,0 +1,25 @@
+<h1>Ustawienia</h1> 
+<%= link_to 'Edytuj', edit_user_path(@user) %>
+<% if show_page_info? %>
+	<div id="page-info">
+		Na tej stronie możesz sprawdzić swoje dane i ustawienia.
+	</div>
+<% end %>
+
+<p>
+  <b>Login:</b>
+  <%=h @user.login %>
+</p>
+
+<p>
+  <b>Nazwa:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+<p>
+	<b>Pokazywanie informacji o stronach:</b> <%= @user.show_page_info ? 'tak' : 'nie' %>
+</p>
