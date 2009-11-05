@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091028142231) do
+ActiveRecord::Schema.define(:version => 20091105183815) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "obj_id"
@@ -23,6 +23,33 @@ ActiveRecord::Schema.define(:version => 20091028142231) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "obj_type"
+  end
+
+  create_table "game_results", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "home_team_score"
+    t.integer  "away_team_score"
+    t.integer  "home_team_points"
+    t.integer  "away_team_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_slots", :force => true do |t|
+    t.integer  "tournament_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "place"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", :force => true do |t|
+    t.integer  "game_slot_id"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|
