@@ -1,0 +1,12 @@
+<% player = avatar %>
+<%= show_avatar(player, :thumb) %>
+<br />
+<% if player.avatar %>
+	<%= 
+		link_to_remote 'Usuń',
+			:url => remove_avatar_player_path(player),
+			:method => :delete
+	%>
+<% else %>
+	<%= link_to 'Dodaj', avatar_player_path(player) %>
+<% end %>

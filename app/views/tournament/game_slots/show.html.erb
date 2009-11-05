@@ -1,0 +1,23 @@
+<p>
+  <b>Tournament:</b>
+  <%=h @game_slot.tournament_id %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%=h @game_slot.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%=h @game_slot.end %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%=h @game_slot.place %>
+</p>
+
+
+<%= link_to 'Edit', edit_game_slot_path(@game_slot) %> |
+<%= link_to 'Back', game_slots_path %>

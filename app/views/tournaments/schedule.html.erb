@@ -1,0 +1,8 @@
+<h1>Harmonogram turnieju</h1>
+<% if show_page_info? %>
+  <div id="page-info">
+    Ustal harmonogram turnieju.
+  </div>
+<% end %>
+
+<%= link_to 'Zakończ', update_schedule_tournament_path(@tournament) %>

@@ -18,14 +18,6 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	# Put this after 'find_user' before_filter
-	def kick_not_current_user_or_admin
-		unless @user and current_user and (@user == current_user or current_user.is_admin?)
-			flash[:notice] = "Nie masz dostępu do strony"
-			redirect_back_or_default('/')
-		end
-	end
-
 	def kick_logged_in
 		if logged_in?
 			flash[:notice] = 'Musisz być wylogowany aby wykonać tę akcję.'

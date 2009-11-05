@@ -1,0 +1,18 @@
+<%= show_page_info "Na tej stronie możesz zmienić avatar zawodnika" %>
+
+<% if @player.avatar %>
+	<%= image_tag @player.avatar.public_filename %>
+<% else %>
+	<% 
+		form_tag add_avatar_player_path(@player),
+			:multipart => true do
+	%>
+		<p>
+			<%= label :uploaded_data, "Wybierz zdjęcie" %><br />
+			<%= file_field_tag "avatar[uploaded_data]" %>
+		</p>
+		<p>
+			<%= submit_tag 'Dodaj' %>
+		</p>
+	<% end %>
+<% end %>

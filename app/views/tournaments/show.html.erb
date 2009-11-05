@@ -1,0 +1,35 @@
+<% if show_page_info? %>
+	<div id="page-info">
+		Ta strona przedstawia szczegółowe dane turnieju.
+	</div>
+<% end %>
+<p>
+  <b>Nazwa:</b>
+  <%=h @tournament.name %>
+</p>
+
+<p>
+  <b>Data rozpoczęcia:</b>
+  <%=h @tournament.start_date %>
+</p>
+
+<p>
+  <b>Data zakończenia:</b>
+  <%=h @tournament.end_date %>
+</p>
+
+<p>
+  <b>Opis:</b>
+  <%=h @tournament.description %>
+</p>
+
+<p>
+  <b>Organizator:</b>
+  <%=h @tournament.organizer %>
+</p>
+
+<%= link_to 'Edytuj', edit_tournament_path(@tournament) %> |
+<%= link_to 'Lista turniejów', tournaments_path %> |
+<%= link_to 'Typ turnieju', manage_type_tournament_path(@tournament) %> |
+<%= link_to 'Zarządzaj drużynami', manage_teams_tournament_path(@tournament) %> |
+<%= link_to 'Harmonogram', schedule_tournament_path(@tournament) %>

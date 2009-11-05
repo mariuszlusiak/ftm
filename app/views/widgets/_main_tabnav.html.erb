@@ -66,20 +66,20 @@ render_tabnav :main,
 	
 		add_tab do |t|
 			t.named 'Turnieje'
-			t.links_to user_tournaments_path(current_user)
-			t.highlights_on :controller => 'users/tournaments'
+			t.links_to tournaments_path
+			t.highlights_on :controller => 'tournaments'
 		end
 
 		add_tab do |t|
 			t.named 'Drużyny'
-			t.links_to user_teams_path(current_user)
-			t.highlights_on :controller => 'users/teams'
+			t.links_to teams_path
+			t.highlights_on :controller => 'teams'
 		end
 
 		add_tab do |t|
 			t.named 'Zawodnicy'
-			t.links_to user_players_path(current_user)
-			t.highlights_on :controller => 'users/players'
+			t.links_to players_path
+			t.highlights_on :controller => 'players'
 		end
 
 	end

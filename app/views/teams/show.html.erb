@@ -1,0 +1,37 @@
+<% if show_page_info? %>
+	<div id="page-info">
+		Ta strona przedstawia szczegółowe informacje od drużynie.
+	</div>
+<% end %>
+<p>
+  <b>Nazwa:</b>
+  <%=h @team.name %>
+</p>
+
+<p>
+  <b>Opis:</b>
+  <%=h @team.description %>
+</p>
+
+<p>
+  <b>Miejscowość:</b>
+  <%=h @team.city %>
+</p>
+
+<p>
+  <b>Rok założenia:</b>
+  <%=h @team.year_founded %>
+</p>
+
+<p>
+	<b>Zawodnicy:</b>
+	<ul>
+		<% @team.players.each do |p| %>
+			<li><%= p.full_name %></li>
+		<% end %>
+	</ul>
+</p>
+
+<%= link_to 'Edytuj', edit_team_path(@team) %> |
+<%= link_to 'Zarządzaj zawodnikami', manage_players_team_path(@team) %> |
+<%= link_to 'Lista drużyn', teams_path %>

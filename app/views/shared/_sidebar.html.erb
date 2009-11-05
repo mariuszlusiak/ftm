@@ -1,8 +1,8 @@
 <% if logged_in? %>
 	<ul>
-		<li><%= link_to 'Dodaj turniej', new_user_tournament_path(current_user) %></li>
-		<li><%= link_to 'Dodaj zawodnika', new_user_player_path(current_user) %></li>
-		<li><%= link_to 'Dodaj drużynę', new_user_team_path(current_user) %></li>
-		<li><%= link_to 'Dodaj osobę', new_user_person_path(current_user) %></li>
+		<li><%= link_to 'Dodaj turniej', new_tournament_path %></li>
+		<li><%= link_to 'Dodaj zawodnika', new_player_path %></li>
+		<li><%= link_to 'Dodaj drużynę', new_team_path %></li>
+		<li><%= link_to 'Dodaj osobę', new_person_path %></li>
 	</ul>
 <% end %>

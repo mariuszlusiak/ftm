@@ -4,10 +4,10 @@
 	</div>
 <% end %>
 <% if logged_in? %>
-	<%= link_to "Turnieje", user_tournaments_path(current_user) %> <br />
-	<%= link_to "Drużyny", user_teams_path(current_user) %> <br />
-	<%= link_to "Zawodnicy", user_players_path(current_user) %> <br />
-	<%= link_to "Osoby", user_people_path(current_user) %>
+	<%= link_to "Turnieje", tournaments_path %> <br />
+	<%= link_to "Drużyny", teams_path %> <br />
+	<%= link_to "Zawodnicy", players_path %> <br />
+	<%= link_to "Osoby", people_path %>
 <% else %>
 Witamy w aplikacji<br />
 Menedżer Turniejów Piłkarskich<br />

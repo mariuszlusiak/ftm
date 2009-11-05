@@ -1,0 +1,29 @@
+<h1>Edycja drużyny</h1>
+<%= show_page_info("Przy pomocy tej strony możesz edytować inforamcje o drużynie.") %>
+
+<% form_for(@team) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label "Nazwa" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "Opis" %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label "Miejscowość" %><br />
+    <%= f.text_field :city %>
+  </p>
+	<p>
+    <%= f.label "Rok założenia" %><br />
+    <%= f.date_select :year_founded, :start_year => 1900, :end_year => Date.today.year,
+			:discard_day => true, :discard_month => true %>
+  </p>
+	<p>
+    <%= f.submit 'Zapisz' %>
+  </p>
+<% end %>
+
+<%= link_to 'Anuluj', teams_path %>

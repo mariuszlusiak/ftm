@@ -1,0 +1,21 @@
+<%= '<div class="players-list-row">' if player_counter%3 == 0 %>
+	<div id='player-<%= player.id %>' class='player'>
+		<%= show_avatar(player) %>
+		<br />
+		<%= link_to_player(player) %>
+		<br />
+		<% if player.team or player.date_of_birth %>
+			(<%= show_short_player_info(player) %>)
+		<% end %>
+		<br />
+		<%= 
+			link_to_remote image_tag('/images/trash.png'),
+				:url => player_path(player),
+				:method => :delete,
+				:confirm => 'Czy na pewno trwale usunąć zawodnika?'
+		%>
+	</div> <!-- .player -->
+<% if player_counter%3 == 2 or player_counter + 1 == size %>
+ </div> <!-- .players_list_row -->
+<% end %>
+

@@ -1,0 +1,43 @@
+<h1>Drużyny</h1>
+<% if show_page_info? %>
+  <div id="page_info">
+    Zgłoś drużyny do turnieju.
+  </div>
+<% end %>
+
+<div id='manage-teams'>
+  <div class='row'>
+    <div id='teams-in-tournament'>
+      <%= render 'teams', :object => @tournament.teams %>
+    </div>
+    <div id='teams-not-in-tournament'>
+      <%= 
+        # Need to add dummy -1 id to make the sql syntax correct
+        # in case there are no teams in tournament
+        render 'teams', :object => Team.all(
+          :conditions => ['id not in (?)',
+            ((@tournament.teams.collect { |t| t.id }) << -1)]
+        )
+      %>
+    </div>
+  </div>
+</div>
+
+<%= 
+  link_to 'Zapisz', update_teams_tournament_path(@tournament),
+    :method => :post
+%>
+<%= 
+  link_to 'Zapisz i przejdź do tworzenia harmonogramu',
+    schedule_tournament_path(@tournament, { :continue => true })
+%>
+<%=
+  drop_receiving_element('teams-in-tournament', :accept => 'team',
+    :with => "'team_id=' + (element.id.split('-').last())",
+    :url => { :action => :add_team })
+%>
+<%=
+  drop_receiving_element('teams-not-in-tournament', :accept => 'team',
+    :with => "'team_id=' + (element.id.split('-').last())",
+    :url => { :action => :remove_team  })
+%>

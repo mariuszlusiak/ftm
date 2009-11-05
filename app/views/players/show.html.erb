@@ -1,0 +1,39 @@
+<%= show_page_info "Ta strona przedstawia szczegółowe informacje o zawodniku." %>
+
+<div id='player-details'>
+
+	<p>
+		Karta zawodnika: <%=h @player.full_name %>
+		<% if @player.team %>
+			(<%= link_to h(@player.team.name), team_path(@player.team) %>)
+		<% end %>
+	</p>
+	
+	<div id='avatar'>
+		<%= render :partial => 'avatar', :object => @player %>
+	</div> <!-- .avatar -->
+	
+	<p>
+	  <b>Numer na koszulce:</b>
+	  <%=h @player.current_number %>
+	</p>
+	
+	<p>
+	  <b>Pozycja na boisku:</b>
+	  <%=h @player.position ? @player.position.description : 'Brak' %>
+	</p>
+	
+	<p>
+	  <b>Opis:</b>
+	  <%=h @player.description %>
+	</p>
+	
+	<p>
+	  <b>Data urodzenia:</b>
+	  <%=h @player.date_of_birth %>
+	</p>
+	
+</div> <!-- #player-details -->
+
+<%= link_to 'Edytuj', edit_player_path(@player) %> |
+<%= link_to 'Lista zawodników', players_path %>
