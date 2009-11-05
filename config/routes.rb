@@ -1,35 +1,40 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :game_slots
+
 
 	map.login '/login', :controller => 'sessions', :action => 'new'
 	map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 	map.register '/register', :controller => 'users', :action => 'new'
 
-  map.resources :users do |u|
-		u.resources :tournaments, :controller => 'users/tournaments',
-      :member => {
-        :manage_type => :get,
-        :update_type => :post,
-        :manage_teams => :get,
-        :update_teams => :post,
-        :schedule => :get,
-        :update_schedule => :post,
-        :add_team => :post,
-        :remove_team => :post
-      }
-		u.resources :players, :controller => 'users/players',
-			:member => {
-				:avatar => :get,
-				:add_avatar => :post,
-				:remove_avatar => :delete
-			}
-		u.resources :teams, :controller => 'users/teams',
-			:member => { 
-				:manage_players => :get,
-				:add_player => :post,
-				:remove_player => :post
-			}
-		u.resources :people, :controller => 'users/people'
-	end
+  map.resources :users
+  
+	map.resources :tournaments,
+    :member => {
+      :manage_type => :get,
+      :update_type => :post,
+      :manage_teams => :get,
+      :update_teams => :post,
+      :schedule => :get,
+      :update_schedule => :post,
+      :add_team => :post,
+      :remove_team => :post
+    }
+  
+	map.resources :players,
+		:member => {
+			:avatar => :get,
+			:add_avatar => :post,
+			:remove_avatar => :delete
+		}
+   
+	map.resources :teams,
+		:member => { 
+			:manage_players => :get,
+			:add_player => :post,
+			:remove_player => :post
+		}
+
+	map.resources :people
 	
   map.resource :session
 

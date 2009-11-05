@@ -4,11 +4,11 @@ module PlayersHelper
 		res = ''
 		if player.avatar
 			res += link_to(image_tag(player.avatar.public_filename(size)),
-				user_player_path(player.user, player))
+				player_path(player))
 		else
 			size_string = size == :small ? '50x50' : '100x100'
 			res += link_to(image_tag('/avatars/default.jpg', :size => size_string),
-				user_player_path(player.user, player))
+				player_path(player))
 		end
 		res
 	end
@@ -23,13 +23,13 @@ module PlayersHelper
 	end
 
 	def link_to_player(player)
-		link_to player.full_name, user_player_path(player.user, player)
+		link_to player.full_name, player_path(player)
 	end
 
 	def link_to_player_team(player)
 		res = ''
 		if player.team
-			res += link_to player.team.name, user_team_path(player.user, player.team)
+			res += link_to player.team.name, team_path(player.team)
 		end
 		res
 	end
