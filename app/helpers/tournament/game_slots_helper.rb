@@ -1,2 +1,0 @@
-module Tournament::GameSlotsHelper
-end
