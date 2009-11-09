@@ -142,6 +142,8 @@ class TournamentsController < ApplicationController
 
   def schedule
     @tournament = Tournament.find params[:id]
+    @tournament.create_games if @tournament.games.size == 0
+    @tournament.save
     respond_to do |format|
       format.html
     end

@@ -1,6 +1,6 @@
 class TournamentType < ActiveRecord::Base
 
-  belongs_to :tournament
+  has_many :tournaments
   has_many :scheduling_algorithm_types
  
 end
