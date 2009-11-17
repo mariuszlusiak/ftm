@@ -1,0 +1,4 @@
+<li id='game-<%= game.id %>' class='game'>
+  <%= render_game game %>
+</li>
+<%= draggable_element("game-#{game.id}", :revert => true) %>

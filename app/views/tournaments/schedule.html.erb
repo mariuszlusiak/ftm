@@ -5,4 +5,15 @@
   </div>
 <% end %>
 
+<div id='schedule'>
+  <div class='row'>
+    <div id='game_slots'>
+      <%= render 'game_slots', :object => @tournament.game_slots %>
+    </div>
+    <div id='games'>
+      <%= render 'games', :object => @tournament.games.unscheduled %>
+    </div>
+  </div>
+</div>
+
 <%= link_to 'Zakończ', tournament_path(@tournament) %>

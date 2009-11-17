@@ -108,6 +108,28 @@ body {
 
 #content #manage-teams li.team {cursor:-moz-grab;}
 
+#content #schedule {display:table;width:100%;}
+
+#content #schedule .row {display:table-row;width:100%;}
+
+#content #schedule #game_slots {
+  border:1px solid;
+  display:table-cell;
+  width:48%
+}
+
+#content #schedule #games {
+  border:1px solid;
+  display:table-cell;
+  width:48%;
+}
+
+#content #schedule ul {list-style-type:none;}
+
+#content #schedule li.game {border:1px solid;cursor:-moz-grab;}
+
+#content #schedule li.game_slot {border:1px solid;cursor:-moz-grab;}
+
 #sidebar {
 	border: 2px solid;
 	display:table-cell;
