@@ -1,4 +1,7 @@
+<% enable_drag_n_drop = false unless defined? enable_drag_n_drop %>
 <li id='game-<%= game.id %>' class='game'>
   <%= render_game game %>
 </li>
-<%= draggable_element("game-#{game.id}", :revert => true) %>
+<% if enable_drag_n_drop %>
+  <%= draggable_element("game-#{game.id}", :revert => true) %>
+<% end %>

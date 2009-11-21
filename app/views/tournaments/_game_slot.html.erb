@@ -1,9 +1,12 @@
+<% enable_drag_n_drop = false unless defined? enable_drag_n_drop %>
 <li id='game-slot-<%= game_slot.id %>' class='game-slot'>
   <%= render_game_slot game_slot %>
 </li>
-<%= draggable_element("game-slot-#{game_slot.id}", :revert => true) %>
-<%= 
-  drop_receiving_element("game-slot-#{game_slot.id}", :accept => 'game',
-    :with => "'game_id=' + (element.id.split('-').last()) + '&game_slot_id=#{game_slot.id}'",
-    :url => { :action => :schedule_game })
-%>
+<% if enable_drag_n_drop %>
+  <%= draggable_element("game-slot-#{game_slot.id}", :revert => true) %>
+  <%= 
+    drop_receiving_element("game-slot-#{game_slot.id}", :accept => 'game',
+      :with => "'game_id=' + (element.id.split('-').last()) + '&game_slot_id=#{game_slot.id}'",
+      :url => { :action => :schedule_game })
+  %>
+<% end %>

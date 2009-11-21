@@ -140,6 +140,14 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def play
+    @tournament = Tournament.find params[:id]
+    @table = Table.new @tournament.games
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def schedule
     @tournament = Tournament.find params[:id]
     @tournament.save
@@ -267,10 +275,12 @@ class TournamentsController < ApplicationController
       format.js do
         if saved 
           render :update do |page|
-            page.replace_html 'game-slots', render('game_slots',
-              :object => game_slot.tournament.game_slots)
-            page.replace_html 'games', render('games',
-              :object => game_slot.tournament.games.unscheduled)
+            page.replace_html 'game-slots', render(:partial => 'game_slots',
+              :object => game_slot.tournament.game_slots,
+              :locals => { :enable_drag_n_drop => true })
+            page.replace_html 'games', render(:partial => 'games',
+              :object => game_slot.tournament.games.unscheduled,
+              :locals => { :enable_drag_n_drop => true })
           end
         end
       end
@@ -284,10 +294,12 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       format.js do
         render :update do |page|
-          page.replace_html 'game-slots', render('game_slots',
-            :object => game_slot.tournament.game_slots)
-          page.replace_html 'games', render('games',
-            :object => game_slot.tournament.games.unscheduled)
+          page.replace_html 'game-slots', render(:partial => 'game_slots',
+            :object => game_slot.tournament.game_slots,
+            :locals => { :enable_drag_n_drop => true })
+          page.replace_html 'games', render(:partial => 'games',
+            :object => game_slot.tournament.games.unscheduled,
+            :locals => { :enable_drag_n_drop => true })
         end
       end
     end

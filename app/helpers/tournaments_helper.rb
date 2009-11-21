@@ -19,4 +19,8 @@ module TournamentsHelper
     "#{game.home_team.name} - #{game.away_team.name}"
   end
 
+  def render_play_game(game)
+    render_game_slot game.game_slot
+  end
+
 end

@@ -1,3 +1,5 @@
+<% enable_drag_n_drop = false unless defined? enable_drag_n_drop %>
 <ul>
-  <%= render :partial => 'game_slot', :collection => game_slots %>
+  <%= render :partial => 'game_slot', :collection => game_slots,
+    :locals =>  { :enable_drag_n_drop => enable_drag_n_drop } %>
 </ul>

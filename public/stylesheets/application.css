@@ -130,6 +130,8 @@ body {
 
 #content #schedule li.game-slot {border:1px solid;cursor:-moz-grab;}
 
+#content #play ul {list-style-type:none}
+
 #sidebar {
 	border: 2px solid;
 	display:table-cell;

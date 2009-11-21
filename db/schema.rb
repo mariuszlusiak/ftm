@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091106155154) do
+ActiveRecord::Schema.define(:version => 20091121230007) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "obj_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20091106155154) do
     t.integer  "away_team_points"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "finished",         :default => false
   end
 
   create_table "game_slots", :force => true do |t|
