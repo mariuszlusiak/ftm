@@ -17,7 +17,9 @@ ActionController::Routing::Routes.draw do |map|
       :schedule => :get,
       :update_schedule => :post,
       :add_team => :post,
-      :remove_team => :post
+      :remove_team => :post,
+      :generate_empty_schedule => :post,
+      :generate_round_robin_schedule => :post
     }
   
 	map.resources :players,

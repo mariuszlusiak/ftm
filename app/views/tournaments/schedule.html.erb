@@ -4,10 +4,16 @@
     Ustal harmonogram turnieju.
   </div>
 <% end %>
-
+<div>
+  <%= link_to 'Wygeneruj pusty harmonogram',
+    generate_empty_schedule_tournament_path(@tournament), :method => :post %>
+  |
+  <%= link_to 'Wygeneruj harmonogram Round-Robin',
+    generate_round_robin_schedule_tournament_path(@tournament), :method => :post %>
+</div>
 <div id='schedule'>
   <div class='row'>
-    <div id='game_slots'>
+    <div id='game-slots'>
       <%= render 'game_slots', :object => @tournament.game_slots %>
     </div>
     <div id='games'>
@@ -17,3 +23,8 @@
 </div>
 
 <%= link_to 'Zakończ', tournament_path(@tournament) %>
+<%=
+  drop_receiving_element('games', :accept => 'game-slot',
+    :with => "'game_slot_id=' + (element.id.split('-').last())",
+    :url => { :action => :unschedule_game })
+%>

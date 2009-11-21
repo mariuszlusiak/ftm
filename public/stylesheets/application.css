@@ -58,7 +58,7 @@ body {
 
 #content #manage-players-action .row {display:table-row; width:100%;}
 
-#content #manage-players-action #add_player {
+#content #manage-players-action #add-player {
 	background-color:#22ff22;
 	display:table-cell;
 	height:30px;
@@ -66,7 +66,7 @@ body {
 	width:49%;
 }
 
-#content #manage-players-action #remove_player {
+#content #manage-players-action #remove-player {
 	background-color:#ff2222;
 	display:table-cell;
 	height:70px;
@@ -112,7 +112,7 @@ body {
 
 #content #schedule .row {display:table-row;width:100%;}
 
-#content #schedule #game_slots {
+#content #schedule #game-slots {
   border:1px solid;
   display:table-cell;
   width:48%
@@ -128,7 +128,7 @@ body {
 
 #content #schedule li.game {border:1px solid;cursor:-moz-grab;}
 
-#content #schedule li.game_slot {border:1px solid;cursor:-moz-grab;}
+#content #schedule li.game-slot {border:1px solid;cursor:-moz-grab;}
 
 #sidebar {
 	border: 2px solid;
@@ -188,7 +188,7 @@ body {
 	width: 100%;
 }
 
-#content #players_list .players-list-row {
+#content #players-list .players-list-row {
 	display: table-row;
 	width: 100%;
 }

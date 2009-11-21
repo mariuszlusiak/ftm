@@ -142,10 +142,31 @@ class TournamentsController < ApplicationController
 
   def schedule
     @tournament = Tournament.find params[:id]
-    #@tournament.empty_schedule
     @tournament.save
     respond_to do |format|
       format.html
+    end
+  end
+
+  def generate_empty_schedule
+    tournament = Tournament.find params[:id]
+    tournament.empty_schedule
+    tournament.save
+    respond_to do |format|
+      format.html do
+        redirect_to schedule_tournament_path(tournament)
+      end
+    end
+  end
+
+  def generate_round_robin_schedule
+    tournament = Tournament.find params[:id]
+    tournament.round_robin_schedule
+    tournament.save
+    respond_to do |format|
+      format.html do
+        redirect_to schedule_tournament_path(tournament)
+      end
     end
   end
 
@@ -230,6 +251,43 @@ class TournamentsController < ApplicationController
           end
         else
           render :nothing => true
+        end
+      end
+    end
+  end
+  
+  def schedule_game
+    game = Game.find params[:game_id]
+    game_slot = GameSlot.find params[:game_slot_id]
+    game_slot.game = nil
+    game.game_slot = game_slot
+    game_slot.save
+    saved = game.save
+    respond_to do |format|
+      format.js do
+        if saved 
+          render :update do |page|
+            page.replace_html 'game-slots', render('game_slots',
+              :object => game_slot.tournament.game_slots)
+            page.replace_html 'games', render('games',
+              :object => game_slot.tournament.games.unscheduled)
+          end
+        end
+      end
+    end
+  end
+
+  def unschedule_game
+    game_slot = GameSlot.find params[:game_slot_id]
+    game_slot.game = nil
+    game_slot.save
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          page.replace_html 'game-slots', render('game_slots',
+            :object => game_slot.tournament.game_slots)
+          page.replace_html 'games', render('games',
+            :object => game_slot.tournament.games.unscheduled)
         end
       end
     end

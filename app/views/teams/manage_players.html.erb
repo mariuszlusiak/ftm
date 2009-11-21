@@ -27,21 +27,21 @@
 </div> <!-- #manage-players -->
 <div id='manage-players-action'>
 	<div class='row'>
-		<div id='add_player'>
+		<div id='add-player'>
 			<h5>Dodaj do drużyny</h5>
-		</div> <!-- #add_player -->
-		<div id='remove_player'>
+		</div> <!-- #add-player -->
+		<div id='remove-player'>
 			<h5>Usuń z drużyny</h5>
-		</div> <!-- #remove_player -->
+		</div> <!-- #remove-player -->
 	</div> <!-- .row -->
 </div> <!-- #manage-players-action -->
 <%= 
-	drop_receiving_element("add_player", :accept => "player",
+	drop_receiving_element("add-player", :accept => "player",
 		:with => "'player_id=' + (element.id.split('-').last())",
 		:url => { :action => :add_player })
 %>
 <%=
-	drop_receiving_element("remove_player", :accept => "player",
+	drop_receiving_element("remove-player", :accept => "player",
 		:with => "'player_id=' + (element.id.split('-').last())",
 		:url => { :action => :remove_player })
 %>
