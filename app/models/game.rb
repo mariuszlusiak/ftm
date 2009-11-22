@@ -8,4 +8,14 @@ class Game < ActiveRecord::Base
 
   named_scope :unscheduled, :conditions => ['game_slot_id is null']
 
+  def update_result(home_team_score, away_team_score, home_team_points, away_team_points)
+    self.game_result ||= GameResult.new
+    result = self.game_result
+    result.home_team_score = home_team_score
+    result.away_team_score = away_team_score
+    result.home_team_points = home_team_points
+    result.away_team_points = away_team_points
+    result.finished = true
+  end
+
 end

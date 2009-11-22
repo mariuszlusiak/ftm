@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091121230007) do
+ActiveRecord::Schema.define(:version => 20091122164920) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "obj_id"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(:version => 20091121230007) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tournament_id"
+  end
+
+  create_table "goals", :force => true do |t|
+    t.integer  "game_result_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "minute"
+    t.boolean  "own_goal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|
@@ -152,15 +162,16 @@ ActiveRecord::Schema.define(:version => 20091121230007) do
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
+    t.string   "crypted_password",            :limit => 40
+    t.string   "salt",                        :limit => 40
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "name"
-    t.boolean  "is_admin",                                :default => false, :null => false
-    t.boolean  "show_page_info",                          :default => true,  :null => false
+    t.boolean  "is_admin",                                  :default => false, :null => false
+    t.boolean  "show_page_info",                            :default => true,  :null => false
+    t.boolean  "use_default_pointing_system",               :default => true,  :null => false
   end
 
 end

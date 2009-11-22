@@ -1,6 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :game_slots
 
+  map.resources :games,
+    :member => {
+      :play => :get
+    }
+
+  map.resources :game_slots
 
 	map.login '/login', :controller => 'sessions', :action => 'new'
 	map.logout '/logout', :controller => 'sessions', :action => 'destroy'

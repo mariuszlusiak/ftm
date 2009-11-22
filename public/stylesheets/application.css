@@ -114,14 +114,14 @@ body {
 
 #content #schedule #game-slots {
   border:1px solid;
-  display:table-cell;
-  width:48%
+  __display:table-cell;
+  __width:48%
 }
 
 #content #schedule #games {
   border:1px solid;
-  display:table-cell;
-  width:48%;
+  __display:table-cell;
+  __width:48%;
 }
 
 #content #schedule ul {list-style-type:none;}
