@@ -1,0 +1,19 @@
+<h1>Gramy</h1>
+<% if show_page_info? %>
+  <div id="page-info">
+    Rozegraj mecze turnieju.
+  </div>
+<% end %>
+<div id="play">
+  <div id="table">
+    <h3>Tabela</h3>
+    <%= render :partial => 'table', :object => @table %>
+  </div>
+  <div id="play-games">
+    <h3>Mecze</h3>
+    <%= render :partial => 'play_games', :object => @tournament.games %>
+  </div>
+</div>
+<div>
+  <%= link_to "Szczegóły turnieju", tournament_path(@tournament) %>
+</div>

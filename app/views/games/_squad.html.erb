@@ -1,0 +1,9 @@
+<ul>
+  <% squad.each do |player| %>
+    <li>
+      <%= player.current_number.to_s %>
+      <%= player.first_name %>
+      <%= player.name %>
+    </li>
+  <% end %>
+</ul>

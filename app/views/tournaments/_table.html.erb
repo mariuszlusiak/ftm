@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <th>Drużyna</th>
+    <th>Mecze</th>
+    <th>Punkty</th>
+    <th>Bramki</th>
+  </tr>
+  <% table.table.each_with_index do |entry, i| %>
+    <tr>
+      <td><%= (i + 1).to_s %></td>
+      <td><%= entry.team.name %></td>
+      <td><%= entry.games %></td>
+      <td><%= entry.points %></td>
+      <td><%= entry.goals_scored %> - <%= entry.goals_lost %></td>
+    </tr>
+  <% end %>
+</table>
