@@ -63,8 +63,10 @@ class Tournament < ActiveRecord::Base
   end
 
   def rotate_teams(home, away)
+    stable = home.shift
     home.unshift away.shift
     away.push home.pop
+    home.unshift stable
   end
 
   def create_game(home_team, away_team)
