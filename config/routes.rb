@@ -5,7 +5,10 @@ ActionController::Routing::Routes.draw do |map|
       :play => :get
     }
 
-  map.resources :game_slots
+  map.resources :game_slots, 
+    :member => {
+      :inline_edit => :post
+    }
 
 	map.login '/login', :controller => 'sessions', :action => 'new'
 	map.logout '/logout', :controller => 'sessions', :action => 'destroy'

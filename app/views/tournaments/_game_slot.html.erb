@@ -1,6 +1,7 @@
 <% enable_drag_n_drop = false unless defined? enable_drag_n_drop %>
+<% enable_edit = false unless defined? enable_edit %>
 <li id='game-slot-<%= game_slot.id %>' class='game-slot'>
-  <%= render_game_slot game_slot %>
+  <%= render_game_slot game_slot, false, enable_edit %>
 </li>
 <% if enable_drag_n_drop %>
   <%= draggable_element("game-slot-#{game_slot.id}", :revert => true) %>

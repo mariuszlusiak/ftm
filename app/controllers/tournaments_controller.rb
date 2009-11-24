@@ -277,7 +277,7 @@ class TournamentsController < ApplicationController
           render :update do |page|
             page.replace_html 'game-slots', render(:partial => 'game_slots',
               :object => game_slot.tournament.game_slots,
-              :locals => { :enable_drag_n_drop => true })
+              :locals => { :enable_drag_n_drop => true, :enable_edit => true })
             page.replace_html 'games', render(:partial => 'games',
               :object => game_slot.tournament.games.unscheduled,
               :locals => { :enable_drag_n_drop => true })
@@ -296,7 +296,7 @@ class TournamentsController < ApplicationController
         render :update do |page|
           page.replace_html 'game-slots', render(:partial => 'game_slots',
             :object => game_slot.tournament.game_slots,
-            :locals => { :enable_drag_n_drop => true })
+            :locals => { :enable_drag_n_drop => true, :enable_edit => true })
           page.replace_html 'games', render(:partial => 'games',
             :object => game_slot.tournament.games.unscheduled,
             :locals => { :enable_drag_n_drop => true })
