@@ -1,0 +1,2 @@
+class GameSlotsController < ApplicationController
+end

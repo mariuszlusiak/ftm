@@ -1,0 +1,2 @@
+module GameSlotsHelper
+end
