@@ -1,20 +1,24 @@
-<h1>Editing field</h1>
+<h1>Edycja boiska</h1>
+<% if show_page_info? %>
+  <div id="page-info">
+    Przy pomocy tej strony możesz edytować informacje o boisku.
+  </div>
+<% end %>
 
 <% form_for(@field) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label 'Nazwa' %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.label 'Opis' %><br />
+    <%= f.text_area :description %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Zapisz' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @field %> |
-<%= link_to 'Back', fields_path %>
+<%= link_to 'Anuluj', fields_path %>

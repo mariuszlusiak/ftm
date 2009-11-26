@@ -82,6 +82,12 @@ render_tabnav :main,
 			t.highlights_on :controller => 'players'
 		end
 
+    add_tab do |t|
+      t.named 'Boiska'
+      t.links_to fields_path
+      t.highlights_on :controller => 'fields'
+    end
+
 	end
 	
 end 

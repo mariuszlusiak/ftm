@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :teams
 	has_many :players
 	has_many :tournaments
+  has_many :fields
 
   # Virtual attribute for the unencrypted password
   attr_accessor :password

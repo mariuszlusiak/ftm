@@ -1,13 +1,18 @@
+<% if show_page_info? %>
+  <div id="page-info">
+    Ta strona przedstawia szczegóły boiska.
+  </div>
+<% end %>
 <p>
-  <b>Name:</b>
+  <b>Nazwa:</b>
   <%=h @field.name %>
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>Opis:</b>
   <%=h @field.description %>
 </p>
 
 
-<%= link_to 'Edit', edit_field_path(@field) %> |
-<%= link_to 'Back', fields_path %>
+<%= link_to 'Edytuj', edit_field_path(@field) %> |
+<%= link_to 'List boisk', fields_path %>
