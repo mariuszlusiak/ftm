@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :fields
+
 
   map.resources :games,
     :member => {

@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @field.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @field.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_field_path(@field) %> |
+<%= link_to 'Back', fields_path %>
