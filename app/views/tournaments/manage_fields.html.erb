@@ -1,0 +1,37 @@
+<h1>Boiska</h1>
+<% if show_page_info? %>
+  <div id="page-info">
+    Dodaj boiska do turnieju.
+  </div>
+<% end %>
+
+<div id='manage-fields'>
+  <div class='row'>
+    <div id='fields-in-tournament'>
+      <%= render 'fields', :object => @tournament.fields %>
+    </div> <!-- #fields-in-tournament -->
+    <div id='fields-not-in-tournament'>
+      <%=
+        # Need to add dummy -1 id to make sql syntac correct
+        # in case there are no teams in tournament
+        render 'fields', :object => @tournament.user.fields.all(
+          :conditions => ['id not in (?)',
+            ((@tournament.fields.collect { |f| f.id }) << -1)]
+        )
+      %>
+    </div> <!-- #fields-not-in-tournament -->
+  </div> <!-- .row -->
+</div> <!-- #manage-fields -->
+
+<%= link_to 'Powrót', tournament_path(@tournament) %>
+
+<%=
+  drop_receiving_element('fields-in-tournament', :accept => 'field',
+    :with => "'field_id=' + (element.id.split('-').last())",
+    :url => { :action => :add_field })
+%>
+<%=
+  drop_receiving_element('fields-not-in-tournament', :accept => 'field',
+    :with => "'field_id=' + (element.id.split('-').last())",
+    :url => { :action => :remove_field })
+%>

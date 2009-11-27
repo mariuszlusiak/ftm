@@ -3,10 +3,12 @@ class TournamentsController < ApplicationController
   before_filter :login_required
   before_filter :find_tournament, :only => [:show, :edit, :update, :delete, :manage_type,
     :update_type, :manage_teams, :manage_fields, :play, :schedule,
-    :generate_empty_schedule, :generate_round_robin_schedule, :add_team, :remove_team]
+    :generate_empty_schedule, :generate_round_robin_schedule, :add_team, :remove_team,
+    :add_field, :remove_field]
   before_filter :find_game, :only => [:schedule_game]
   before_filter :find_game_slot, :only => [:schedule_game, :unschedule_game]
   before_filter :find_team, :only => [:add_team, :remove_team]
+  before_filter :find_field, :only => [:add_field, :remove_field]
   
 	
   def index
@@ -149,6 +151,64 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def add_field
+    if @tournament.fields.include? @field
+      saved = false
+    else
+      @tournament.fields << @field
+      saved = @tournament.save
+    end
+    respond_to do |format|
+      format.js do 
+        if saved
+          render :update do |page|
+            page.replace_html 'fields-in-tournament', :partial => 'fields',
+              :object => @tournament.fields
+            page.replace_html 'fields-not-in-tournament', :partial => 'fields',
+              :object => @tournament.user.fields.all(:conditions => ['id not in (?)',
+                ((@tournament.fields.collect { |f| f.id }) << -1)]
+              )
+            page['fields-in-tournament'].visual_effect :highlight,
+              :start_color => '#88ff88',
+              :end_color => '#114411'
+          end
+        else
+          render :nothing => true
+        end
+      end
+    end
+  end
+
+  def remove_field
+    if @tournament.fields.include? @field
+      @tournament.fields.delete @field
+      @field.tournaments.delete @tournament
+      saved = @tournament.save
+      saved = saved && @field.save
+    else
+      saved = false
+    end
+    respond_to do |format|
+      format.js do
+        if saved
+          render :update do |page|
+            page.replace_html 'fields-in-tournament', :partial => 'fields',
+              :object => @tournament.fields
+            page.replace_html 'fields-not-in-tournament', :partial => 'fields',
+              :object => @tournament.user.fields.all(:conditions => ['id not in (?)',
+                ((@tournament.fields.collect { |f| f.id }) << -1)]
+              )
+            page['fields-not-in-tournament'].visual_effect :highlight,
+              :start_color => '#88ff88',
+              :end_color => '#114411'
+          end
+        else
+          render :nothing => true
+        end
+      end
+    end
+  end
+
   def add_team
     if @tournament.teams.include? @team
       saved = false
@@ -163,7 +223,7 @@ class TournamentsController < ApplicationController
             page.replace_html 'teams-in-tournament', :partial => 'teams',
               :object => @tournament.teams
             page.replace_html 'teams-not-in-tournament', :partial => 'teams',
-              :object => Team.all(:conditions => ['id not in (?)',
+              :object => @tournament.user.teams.all(:conditions => ['id not in (?)',
                 ((@tournament.teams.collect { |t| t.id }) << -1)]
               )
             page['teams-in-tournament'].visual_effect :highlight,
@@ -194,7 +254,7 @@ class TournamentsController < ApplicationController
             page.replace_html 'teams-in-tournament', :partial => 'teams',
               :object => @tournament.teams
             page.replace_html 'teams-not-in-tournament', :partial => 'teams',
-              :object => Team.all(:conditions => ['id not in (?)',
+              :object => @tournament.user.teams.all(:conditions => ['id not in (?)',
                 ((@tournament.teams.collect { |t| t.id }) << -1)]
               )
             page['teams-not-in-tournament'].visual_effect :highlight,
@@ -269,6 +329,11 @@ class TournamentsController < ApplicationController
     def find_team
       @team = Team.find params[:team_id]
       check_access_rights_to_resource @team
+    end
+
+    def find_field
+      @field = Field.find params[:field_id]
+      check_access_rights_to_resource @field
     end
 
 end

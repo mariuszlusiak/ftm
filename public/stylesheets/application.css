@@ -108,6 +108,26 @@ body {
 
 #content #manage-teams li.team {cursor:-moz-grab;}
 
+#content #manage-fields {display:table;width:100%;}
+
+#content #manage-fields .row {display:table-row;width:100%}
+
+#content #manage-fields #fields-in-tournament {
+  border:1px solid;
+  display:table-cell;
+  width:48%;
+}
+
+#content #manage-fields #fields-not-in-tournament {
+  border:1px solid;
+  display:table-cell;
+  width:48%;
+}
+
+#content #manage-fields ul {list-style-type:none;}
+
+#content #manage-fields li.field {cursor:-moz-grab;}
+
 #content #schedule {display:table;width:100%;}
 
 #content #schedule .row {display:table-row;width:100%;}

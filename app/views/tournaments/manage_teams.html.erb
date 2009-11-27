@@ -14,7 +14,7 @@
       <%= 
         # Need to add dummy -1 id to make the sql syntax correct
         # in case there are no teams in tournament
-        render 'teams', :object => Team.all(
+        render 'teams', :object => @tournament.user.teams.all(
           :conditions => ['id not in (?)',
             ((@tournament.teams.collect { |t| t.id }) << -1)]
         )
