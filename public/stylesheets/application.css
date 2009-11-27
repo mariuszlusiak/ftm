@@ -198,6 +198,13 @@ body {
 	padding: 1em;
 }
 
+#warning {
+  background-color:#ff0000;
+  font:bold smaller sans-serif;
+  margin-bottom:2em;
+  padding:1em;
+}
+
 #page-info {
 	background-color: #ffff66;
 	font: smaller sans-serif;

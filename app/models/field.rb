@@ -4,5 +4,6 @@ class Field < ActiveRecord::Base
 
   has_many :tournament_fields
   has_many :tournaments, :through => :tournament_fields
+  has_many :game_slots
 
 end

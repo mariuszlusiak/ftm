@@ -132,8 +132,14 @@ class TournamentsController < ApplicationController
   end
 
   def generate_empty_schedule
-    @tournament.empty_schedule
-    @tournament.save
+    if @tournament.fields.size == 0
+      flash[:warning] = "Musisz najpierw dodać do turnieju przynajmniej jedno boisko"
+    elsif @tournament.teams.size != @tournament.tournament_metadata.teams_count
+      flash[:warning] = "Liczba dodanych do turnieju drużyn nie zgadza się z zadeklarowaną"
+    else
+      @tournament.empty_schedule
+      @tournament.save
+    end
     respond_to do |format|
       format.html do
         redirect_to schedule_tournament_path(@tournament)
@@ -142,8 +148,14 @@ class TournamentsController < ApplicationController
   end
 
   def generate_round_robin_schedule
-    @tournament.round_robin_schedule
-    @tournament.save
+    if @tournament.fields.size == 0
+      flash[:warning] = "Musisz najpierw dodać do turnieju przynajmniej jedno boisko"
+    elsif @tournament.teams.size != @tournament.tournament_metadata.teams_count
+      flash[:warning] = "Liczba dodanych do turnieju drużyn nie zgadza się z zadeklarowaną"
+    else
+      @tournament.round_robin_schedule
+      @tournament.save
+    end
     respond_to do |format|
       format.html do
         redirect_to schedule_tournament_path(@tournament)

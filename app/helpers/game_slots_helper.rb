@@ -11,21 +11,22 @@ module GameSlotsHelper
       form_elements = ''
       form = remote_form_for(game_slot)  do |f|
         form_elements += f.submit 'Zapisz'
-        form_elements += f.calendar_date_select(:start)
-        form_elements += f.calendar_date_select(:end)
+        form_elements += f.calendar_date_select(:start, :size => 13)
+        form_elements += f.calendar_date_select(:end, :size => 13)
+        form_elements += f.select(:field_id,
+          game_slot.tournament.fields.collect { |f| [ f.name, f.id ] }
+        )
       end
       result += form[0]
       result += form_elements
       result += form[1]
-      #result += calendar_date_select_tag("p_date_and_time", game_slot.start,
-      #  :time => true)
-      #result += ' '
-      #result += calendar_date_select_tag("p_date_and_time", game_slot.end,
-      #  :time => true)
     else
+      result += game_slot.field.name
+      result += ' '
       result += game_slot.start.strftime("%Y-%m-%d")
       result += ' '
       result += game_slot.start.strftime("%H:%M")
+      result += ' '
       result += game_slot.end.strftime("%H:%M")
     end
     result += ' '
