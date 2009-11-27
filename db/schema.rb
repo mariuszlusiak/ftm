@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091126224216) do
+ActiveRecord::Schema.define(:version => 20091127210835) do
 
   create_table "avatars", :force => true do |t|
     t.integer  "obj_id"
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(:version => 20091126224216) do
     t.string   "city"
     t.integer  "year_founded"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tournament_fields", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "field_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

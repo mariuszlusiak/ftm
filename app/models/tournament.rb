@@ -9,6 +9,8 @@ class Tournament < ActiveRecord::Base
   has_many :games
   has_many :tournament_teams
   has_many :teams, :through => :tournament_teams
+  has_many :tournament_fields
+  has_many :fields, :through => :tournament_fields
 
   # Creates games and game slots. This is an entry point for scheduling a tournament.
   def empty_schedule
