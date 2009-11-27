@@ -1,8 +1,13 @@
 class TournamentsController < ApplicationController
-  # GET /tournaments
-  # GET /tournaments.xml
 	
   before_filter :login_required
+  before_filter :find_tournament, :only => [:show, :edit, :update, :delete, :manage_type,
+    :update_type, :manage_teams, :manage_fields, :play, :schedule,
+    :generate_empty_schedule, :generate_round_robin_schedule, :add_team, :remove_team]
+  before_filter :find_game, :only => [:schedule_game]
+  before_filter :find_game_slot, :only => [:schedule_game, :unschedule_game]
+  before_filter :find_team, :only => [:add_team, :remove_team]
+  
 	
   def index
     @tournaments = current_user.tournaments
@@ -11,17 +16,12 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # GET /tournaments/1
-  # GET /tournaments/1.xml
   def show
-    @tournament = Tournament.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
     end
   end
 
-  # GET /tournaments/new
-  # GET /tournaments/new.xml
   def new
     @tournament = Tournament.new
     respond_to do |format|
@@ -29,13 +29,10 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # GET /tournaments/1/edit
   def edit
     @tournament = Tournament.find(params[:id])
   end
 
-  # POST /tournaments
-  # POST /tournaments.xml
   def create
     @tournament = Tournament.new(params[:tournament])
 		@tournament.user = current_user
@@ -55,10 +52,7 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # PUT /tournaments/1
-  # PUT /tournaments/1.xml
   def update
-    @tournament = Tournament.find(params[:id])
     respond_to do |format|
       if @tournament.update_attributes(params[:tournament])
         flash[:notice] = 'Dane turnieju zostały zaktualizowane.'
@@ -69,10 +63,7 @@ class TournamentsController < ApplicationController
     end
   end
 
-  # DELETE /tournaments/1
-  # DELETE /tournaments/1.xml
   def destroy
-    @tournament = Tournament.find(params[:id])
     @tournament.destroy
     respond_to do |format|
       format.html { redirect_to tournaments_path }
@@ -80,7 +71,6 @@ class TournamentsController < ApplicationController
   end
 
   def manage_type
-    @tournament = Tournament.find params[:id]
     if @tournament.tournament_metadata
       @metadata = @tournament.tournament_metadata
     else
@@ -94,7 +84,6 @@ class TournamentsController < ApplicationController
   end
 
   def update_type
-    @tournament = Tournament.find params[:id]
     metadata = @tournament.tournament_metadata
     metadata.teams_count = params[:tournament_metadata][:teams_count].to_i
     metadata.games_count = params[:tournament_metadata][:games_count].to_i
@@ -116,32 +105,18 @@ class TournamentsController < ApplicationController
   end
 
   def manage_teams
-    @tournament = Tournament.find params[:id]
     respond_to do |format|
       format.html
     end
   end
 
-  def update_teams
-    @tournament = Tournament.find params[:id]
-    # TODO: update tournament teams
-    saved = true
-    continue = !params[:continue].nil?
+  def manage_fields
     respond_to do |format|
-      format.html do
-        if saved and continue
-          redirect_to schedule_tournament_path(@tournament)
-        elsif saved
-          redirect_to tournament_path(@tournament)
-        else
-          render :action => 'manage_tournanment_teams'
-        end
-      end
+      format.html
     end
   end
 
   def play
-    @tournament = Tournament.find params[:id]
     @table = Table.new @tournament.games
     respond_to do |format|
       format.html
@@ -149,62 +124,37 @@ class TournamentsController < ApplicationController
   end
 
   def schedule
-    @tournament = Tournament.find params[:id]
-    @tournament.save
     respond_to do |format|
       format.html
     end
   end
 
   def generate_empty_schedule
-    tournament = Tournament.find params[:id]
-    tournament.empty_schedule
-    tournament.save
+    @tournament.empty_schedule
+    @tournament.save
     respond_to do |format|
       format.html do
-        redirect_to schedule_tournament_path(tournament)
+        redirect_to schedule_tournament_path(@tournament)
       end
     end
   end
 
   def generate_round_robin_schedule
-    tournament = Tournament.find params[:id]
-    tournament.round_robin_schedule
-    tournament.save
+    @tournament.round_robin_schedule
+    @tournament.save
     respond_to do |format|
       format.html do
-        redirect_to schedule_tournament_path(tournament)
-      end
-    end
-  end
-
-  def update_schedule
-    @tournament = Tournament.find params[:id]
-    # TODO: update tournament schedule
-    saved = true
-    respond_to do |format|
-      format.html do 
-        if saved
-          redirect_to tournament_path(@tournament)
-        else
-          render :action => 'schedule_tournament'
-        end
+        redirect_to schedule_tournament_path(@tournament)
       end
     end
   end
 
   def add_team
-    @tournament = Tournament.find params[:id]
-    if params[:team_id]
-      team = Team.find params[:team_id]
-      if @tournament.teams.include? team
-        saved = false
-      else
-        @tournament.teams << team
-        saved = @tournament.save
-      end
-    else
+    if @tournament.teams.include? @team
       saved = false
+    else
+      @tournament.teams << @team
+      saved = @tournament.save
     end
     respond_to do |format|
       format.js do
@@ -228,18 +178,12 @@ class TournamentsController < ApplicationController
   end
 
   def remove_team
-    @tournament = Tournament.find params[:id]
-    if params[:team_id]
-      team = Team.find params[:team_id]
-      if @tournament.teams.include? team
-        @tournament.teams.delete team
-        team.tournaments.delete @tournament
-        # TODO: rollback if one of the saves goes wrong
-        saved = @tournament.save
-        saved = saved && team.save
-      else
-        saved = false
-      end
+    if @tournament.teams.include? @team
+      @tournament.teams.delete @team
+      @team.tournaments.delete @tournament
+      # TODO: rollback if one of the saves goes wrong
+      saved = @tournament.save
+      saved = saved && @team.save
     else
       saved = false
     end
@@ -304,5 +248,27 @@ class TournamentsController < ApplicationController
       end
     end
   end
+
+  private
+
+    def find_tournament
+      @tournament = Tournament.find params[:id]
+      check_access_rights_to_resource @tournament
+    end
+
+    def find_game
+      @game = Game.find params[:game_id]
+      check_access_rights_to_resource @game.tournament
+    end
+
+    def find_game_slot
+      @game_slot = GameSlot.find params[:game_slot_id]
+      check_access_rights_to_resource @game_slot.tournament
+    end
+
+    def find_team
+      @team = Team.find params[:team_id]
+      check_access_rights_to_resource @team
+    end
 
 end

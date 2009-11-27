@@ -23,6 +23,8 @@
     <% end %>
     <p>
       <%= f.submit 'Zakończ mecz' %>
+      <br />
+      <%= link_to 'Powrót', play_tournament_path(@game.tournament) %>
     </p>
   <% end %>
   <h3>Składy</h3>

@@ -23,12 +23,9 @@
   </div>
 </div>
 
+<%=  link_to 'Powrót', tournament_path(@tournament) %>
 <%= 
-  link_to 'Zapisz', update_teams_tournament_path(@tournament),
-    :method => :post
-%>
-<%= 
-  link_to 'Zapisz i przejdź do tworzenia harmonogramu',
+  link_to 'Przejdź do tworzenia harmonogramu',
     schedule_tournament_path(@tournament, { :continue => true })
 %>
 <%=
