@@ -11,6 +11,7 @@ body {
 #header span.description {font-size:9px}
 
 #menu {
+  background-color: #ddddff;
 	border:2px solid;
 	margin:10px 10px 0 10px;
 	height:30px;
@@ -153,6 +154,7 @@ body {
 #content #play ul {list-style-type:none}
 
 #sidebar {
+  background-color: #ddddff;
 	border: 2px solid;
 	display:table-cell;
 	margin-top:40px;
@@ -183,7 +185,7 @@ body {
 
 #sidebar a:hover {
 	color: #FFFFFF;
-	background: #CCCCCC; 
+	background: #8585ff; 
 }
 
 
@@ -234,7 +236,7 @@ body a, a.active {
 
 body a:hover {
 	color: #FFFFFF;
-	background: #CCCCCC;
+	background: #8585ff;
 }
 
 #content #players-list img {
@@ -244,7 +246,6 @@ body a:hover {
 .main_tabnav {
 	color: #333333;
 	border-bottom: 2px solid black;
-	margin: 13px 0px 0px 0px;
 	padding: 0px;
 	z-index: 1;
 	padding-left: 10px
@@ -272,7 +273,6 @@ body a:hover {
 
 .main_tabnav a, main_tabnav a.active {
 	color: #333333;
-	background: #EEEEEE;
 	font-weight: bold;
 	border: 2px solid black;
 	padding: 2px 5px 0px 5px;
@@ -295,7 +295,7 @@ body a:hover {
 	color: #333333; }
 
 .main_tabnav_content {
-	background: #FFFFFF;
+	background: #ddddff;
 	padding: 20px;
 	border: 2px solid black;
 	border-top: none;
