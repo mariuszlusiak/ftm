@@ -1,33 +1,11 @@
-<h1>Lista turniejów</h1>
 <% if show_page_info? %>
 	<div id="page-info">
 		Ta strona przedstawia listę turniejów dodanych przez Ciebie do systemu.
 	</div>
 <% end %>
-<table>
-  <tr>
-    <th>Nazwa</th>
-    <th>Data rozpoczęcia</th>
-    <th>Data zakończenia</th>
-		<th>Organizator</th>
-  </tr>
-
 <% @tournaments.each do |tournament| %>
-  <tr>
-    <td><%=h tournament.name %></td>
-    <td><%=h tournament.start_date %></td>
-    <td><%=h tournament.end_date %></td>
-    <td><%=h tournament.organizer %></td>
-    <td><%= link_to 'Szczegóły', tournament_path(tournament) %></td>
-    <td><%= link_to 'Edytuj', edit_tournament_path(tournament) %></td>
-    <td>
-			<%= link_to 'Usuń', tournament_path(tournament),
-				:confirm => 'Czy na pewno trwale usunąć turniej?', :method => :delete %>
-		</td>
-  </tr>
+  <%= 
+    link_to render_tournament_div(tournament), tournament_path(tournament),
+      :class => 'index-list'
+  %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'Dodaj turniej', new_tournament_path %>

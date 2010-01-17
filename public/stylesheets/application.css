@@ -1,17 +1,31 @@
 body {
+  background-color:#222;
 	color:#333333;
-	font-family:Verdana,Arial,Helvetica, sans-serif;
+	font-family:'Lucida Grande','Lucida Sans Unicode',Geneva,Verdana,Sans-Serif;
 	font-size:13px;
 	margin:0 auto;
 	padding-top:15px;
 	width:1000px;
 }
 
+body a, a.active {
+	color: #1058a0;
+	font-weight: bold;
+	margin: 0;
+	text-decoration: none; 
+}
+
+body a:hover {
+	color: #FFFFFF;
+  background: #0e4f90;
+  -moz-border-radius:3px;
+}
+
 #header {margin:0 50px 0 20px;text-align:right;}
-#header span.description {font-size:9px}
+#header span.description {color:#57a3ee;font-size:11px}
 
 #menu {
-  background-color: #ddddff;
+  background-color: #fff;
 	border:2px solid;
 	margin:10px 10px 0 10px;
 	height:30px;
@@ -19,6 +33,37 @@ body {
 	text-align:left;
 	-moz-border-radius-topleft:10px;
 	-moz-border-radius-topright:10px;
+}
+
+#menu ul {
+  display:block;
+  list-style:none;
+  margin:0;padding:10px 0;
+}
+
+#menu ul li {
+  display:block;
+  float:left;
+  margin:0;
+  padding:0;
+}
+
+#menu ul li a,
+#menu ul li a:visited {
+  color:#57a3ee;
+  cursor:pointer;
+  float:left;
+  font-size:11px;
+  font-weight:bold;
+  margin:0 10px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+
+#menu ul li a:hover {
+  background: #0e4f90;
+  color:#fff;
+  -moz-border-radius:3px;
 }
 
 #main-panel {
@@ -40,6 +85,97 @@ body {
 	width:80%;
 	-moz-border-radius-topleft:10px;
 	-moz-border-radius-topright:10px;
+}
+
+#content .index-div {
+  background: #eef;
+  margin: 1px 0px;
+  padding: 5px;
+  -moz-border-radius: 10px;
+}
+
+#content .index-div:hover {
+	color: #FFFFFF;
+  background: #0e4f90;
+}
+
+#content a.index-list {
+  color: #333;
+}
+
+#content .tournament {
+}
+
+#content .tournament .headline {
+  display:block;
+  font-size:16px;
+}
+
+#content .tournament .name {
+  font-weight:bold;
+  margin-right:10px;
+}
+
+#content .tournament .info {
+  margin:10px;
+}
+
+#content .team {
+}
+
+#content .team .headline {
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+}
+
+#content .team .name {
+  margin-right:10px;
+}
+
+#content .team .info {
+  margin:10px;
+}
+
+#content .field {
+}
+
+#content .field .headline {
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+}
+
+#content .field .name {
+  margin-right:10px;
+}
+
+#content .field .info {
+  margin:10px;
+}
+
+#content .player {
+  height:100px;
+}
+
+#content .player .avatar {
+  position:absolute 0px;
+  float:right;
+  padding: 0px 10px;
+}
+
+#content .player .headline {
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+}
+
+#content .player .name {
+  margin-right:10px;
+}
+
+#content .player .info {
+  margin:10px;
 }
 
 #content #manage-players {display:table;width:100%;}
@@ -154,7 +290,7 @@ body {
 #content #play ul {list-style-type:none}
 
 #sidebar {
-  background-color: #ddddff;
+  background-color: #fff;
 	border: 2px solid;
 	display:table-cell;
 	margin-top:40px;
@@ -168,7 +304,6 @@ body {
 #sidebar ul {list-style-type:none;margin:5px;padding:0px;}
 
 #sidebar li {
-  background: #EEEEEE;
 	color: #888888;
   margin: 2px;
   padding: 2px 5px 0px 5px;
@@ -176,8 +311,7 @@ body {
 }
 
 #sidebar a, a.active {
-	color: #333333;
-	background: #EEEEEE;
+	color: #1058a0;
 	font-weight: bold;
 	margin: 0;
 	text-decoration: none; 
@@ -185,13 +319,14 @@ body {
 
 #sidebar a:hover {
 	color: #FFFFFF;
-	background: #8585ff; 
+  background: #0e4f90;
+  -moz-border-radius:3px;
 }
 
 
 
 #footer {margin:10px 50px 0 20px;text-align:right;}
-#footer span.author {font-size:9px;}
+#footer span.author {color:#57a3ee;font-size:11px;}
 
 #notice {
 	background-color: #66ff66;
@@ -208,7 +343,7 @@ body {
 }
 
 #page-info {
-	background-color: #ffff66;
+	background-color: #fff;
 	font: smaller sans-serif;
 	margin: 1em;
 	padding: 1em;
@@ -229,23 +364,13 @@ body {
 	width: 30em;
 }
 
-body a, a.active {
-	color: #333333;
-	text-decoration: none;
-}
-
-body a:hover {
-	color: #FFFFFF;
-	background: #8585ff;
-}
-
 #content #players-list img {
 	border: none;
 }
 
 .main_tabnav {
-	color: #333333;
-	border-bottom: 2px solid black;
+	color: #1058a0;
+	border-bottom: 2px solid #000;
 	padding: 0px;
 	z-index: 1;
 	padding-left: 10px
@@ -257,47 +382,68 @@ body a:hover {
 }
 
 .main_tabnav li {
+	color: #1058a0;
+  background-color: #fff;
 	display: inline;
 	overflow: hidden;
-	list-style-type: none; }
+	list-style-type: none; 
+  -moz-border-radius-topleft:3px;
+  -moz-border-radius-topright:3px;
+}
 
 .main_tabnav li span.disabled {
         color: #888888;
         background: #FAFAFA;
-        border: 2px solid #DDDDDD;
+        border: 2px solid red;
         border-bottom: none;
         padding: 2px 5px 0px 5px;
         margin: 0;
         text-decoration: none;
 }
 
-.main_tabnav a, main_tabnav a.active {
-	color: #333333;
+.main_tabnav a, .main_tabnav a.active {
+	color: #1058a0;
 	font-weight: bold;
-	border: 2px solid black;
+	border-bottom: 2px solid #000;
 	padding: 2px 5px 0px 5px;
 	margin: 0;
-	text-decoration: none; }
+	text-decoration: none;
+  -moz-border-radius-topleft:3px;
+  -moz-border-radius-topright:3px;
+  -moz-border-radius-bottomleft:0px;
+  -moz-border-radius-bottomright:0px;
+}
 
 .main_tabnav a.active {
-	background: #FFFFFF;
-	border-bottom: 3px solid #FFFFFF; }
+	color: #1058a0;
+  background: #fff;
+	border-bottom: 2px solid #FFFFFF; 
+}
 
 .main_tabnav a:hover {
 	color: #FFFFFF;
-	background: #CCCCCC; }
-
-.main_tabnav a:visited {
-	color: #333333; }
+  background: #0e4f90;
+	border-bottom: 2px solid #000; 
+  -moz-border-radius-topleft:3px;
+  -moz-border-radius-topright:3px;
+  -moz-border-radius-bottomleft:0px;
+  -moz-border-radius-bottomright:0px;
+}
 
 .main_tabnav a.active:hover {
+  color: #1058a0;
 	background: #FFFFFF;
-	color: #333333; }
+  border-bottom: 2px solid #fff;
+  -moz-border-radius-topleft:3px;
+  -moz-border-radius-topright:3px;
+  -moz-border-radius-bottomleft:0px;
+  -moz-border-radius-bottomright:0px;
+}
 
 .main_tabnav_content {
-	background: #ddddff;
+	background: #fff;
 	padding: 20px;
-	border: 2px solid black;
+	border: 2px solid #fff;
 	border-top: none;
 	z-index: 2;
 	-moz-border-radius-bottomleft:10px;

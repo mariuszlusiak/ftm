@@ -1,5 +1,30 @@
 module PlayersHelper
 
+  def render_player_div(player)
+    result = %{
+      <div class='index-div player'>
+        <span class='headline'>
+          <span class='name'>#{h player.full_name}</span>
+        </span>
+    }
+    if player.team
+      result += %{
+        <span class='info'>#{h player.team.name}</span>
+      }
+    end
+    if player.avatar
+      result += %{ 
+        <div class='avatar'>
+          #{image_tag(player.avatar.public_filename(:thumb))}
+        </div>
+      }
+    end
+    result += %{
+      </div>
+    }
+    result
+  end
+
 	def show_avatar(player, size = :small)
 		res = ''
 		if player.avatar

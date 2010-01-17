@@ -1,27 +1,11 @@
-<h1>List boisk</h1>
 <% if show_page_info? %>
   <div id="page-info">
     Ta strona przedstawia listę boisk dodanych przez Ciebie do systemu.
   </div>
 <% end %>
-
-<table>
-  <tr>
-    <th>Nazwa</th>
-    <th>Opis</th>
-  </tr>
-
 <% @fields.each do |field| %>
-  <tr>
-    <td><%=h field.name %></td>
-    <td><%=h truncate(field.description, 80) %></td>
-    <td><%= link_to 'Szczegóły', field %></td>
-    <td><%= link_to 'Edytuj', edit_field_path(field) %></td>
-    <td><%= link_to 'Usuń', field, :confirm => 'Czy na pewno usunąć?', :method => :delete %></td>
-  </tr>
+  <%=
+    link_to render_field_div(field), field_path(field),
+      :class => 'index-list'
+  %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'Dodaj boisko', new_field_path %>

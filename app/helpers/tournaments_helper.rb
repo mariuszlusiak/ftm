@@ -1,5 +1,29 @@
 module TournamentsHelper
 
+  def render_tournament_div(tournament)
+    result = %{
+      <div class='index-div tournament'>
+      <span class='headline'>
+        <span class='name'>#{h tournament.name}</span>
+      </span> 
+    }
+    if tournament.start_date and tournament.end_date
+      result += %{
+        <span class='info'>Od: #{h tournament.start_date}</span>
+        <span class='info'>Do: #{h tournament.end_date}</span>
+      }
+    end
+    unless tournament.organizer.blank?
+      result += %{
+        <span class='info'>Zorganizowany przez: #{h tournament.organizer}</span>
+      }
+    end
+    result += %{
+      </div>
+    }
+    result
+  end
+
   def render_game(game)
     "#{game.home_team.name} - #{game.away_team.name}"
   end
