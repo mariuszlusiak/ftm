@@ -91,6 +91,7 @@ body a:hover {
   background: #eef;
   margin: 1px 0px;
   padding: 5px;
+  position: relative;
   -moz-border-radius: 10px;
 }
 
@@ -155,13 +156,17 @@ body a:hover {
 }
 
 #content .player {
-  height:100px;
+  height:120px;
 }
 
 #content .player .avatar {
-  position:absolute 0px;
-  float:right;
-  padding: 0px 10px;
+  position: absolute;
+  right:10px;
+  top:10px;
+}
+
+#content .player .avatar img {
+  border:double #fff;
 }
 
 #content .player .headline {
