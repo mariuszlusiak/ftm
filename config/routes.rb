@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
       :remove_team => :post,
       :generate_empty_schedule => :post,
       :generate_round_robin_schedule => :post,
+      :generate_round_robin_ftm_schedule => :post,
       :play => :get
     }
   

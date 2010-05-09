@@ -3,8 +3,9 @@ class TournamentsController < ApplicationController
   before_filter :login_required
   before_filter :find_tournament, :only => [:show, :edit, :update, :destroy, :manage_type,
     :update_type, :manage_teams, :manage_fields, :play, :schedule,
-    :generate_empty_schedule, :generate_round_robin_schedule, :add_team, :remove_team,
-    :add_field, :remove_field]
+    :generate_empty_schedule, :generate_round_robin_schedule,
+    :generate_round_robin_ftm_schedule, :add_team, :remove_team, :add_field,
+    :remove_field]
   before_filter :find_game, :only => [:schedule_game]
   before_filter :find_game_slot, :only => [:schedule_game, :unschedule_game]
   before_filter :find_team, :only => [:add_team, :remove_team]
@@ -161,6 +162,24 @@ class TournamentsController < ApplicationController
         redirect_to schedule_tournament_path(@tournament)
       end
     end
+  end
+
+  def generate_round_robin_ftm_schedule
+    if @tournament.fields.size == 0
+      flash[:warning] = "Musisz najpierw dodać do turnieju przynajmniej jedno boisko"
+    elsif @tournament.teams.size != @tournament.tournament_metadata.teams_count
+      flash[:warning] = "Liczba dodanych do turnieju drużyn nie zgadza się" +
+        " z zadeklarowaną"
+    else
+      @tournament.round_robin_ftm_schedule
+      @tournament.save
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to schedule_tournament_path(@tournament)
+      end
+    end
+
   end
 
   def add_field
