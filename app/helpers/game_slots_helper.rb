@@ -9,7 +9,7 @@ module GameSlotsHelper
     end
     if edit
       form_elements = ''
-      form = remote_form_for(game_slot)  do |f|
+      form = remote_form_for(game_slot) do |f|
         form_elements += f.submit 'Zapisz'
         form_elements += f.calendar_date_select(:start, :size => 13)
         form_elements += f.calendar_date_select(:end, :size => 13)

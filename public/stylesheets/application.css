@@ -19,6 +19,7 @@ body a:hover {
 	color: #FFFFFF;
   background: #0e4f90;
   -moz-border-radius:3px;
+	-webkit-border-radius: 3px;
 }
 
 #header {margin:0 50px 0 20px;text-align:right;}
@@ -33,6 +34,8 @@ body a:hover {
 	text-align:left;
 	-moz-border-radius-topleft:10px;
 	-moz-border-radius-topright:10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
 }
 
 #menu ul {
@@ -64,6 +67,7 @@ body a:hover {
   background: #0e4f90;
   color:#fff;
   -moz-border-radius:3px;
+	-webkit-border-radius: 3px;
 }
 
 #main-panel {
@@ -85,6 +89,8 @@ body a:hover {
 	width:80%;
 	-moz-border-radius-topleft:10px;
 	-moz-border-radius-topright:10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
 }
 
 #content .index-div {
@@ -93,6 +99,7 @@ body a:hover {
   padding: 5px;
   position: relative;
   -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 #content .index-div:hover {
@@ -304,6 +311,8 @@ body a:hover {
 	width:15%;
 	-moz-border-radius-bottomleft:10px;
 	-moz-border-radius-bottomright:10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 }
 
 #sidebar ul {list-style-type:none;margin:5px;padding:0px;}
@@ -394,6 +403,8 @@ body a:hover {
 	list-style-type: none; 
   -moz-border-radius-topleft:3px;
   -moz-border-radius-topright:3px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
 }
 
 .main_tabnav li span.disabled {
@@ -417,6 +428,10 @@ body a:hover {
   -moz-border-radius-topright:3px;
   -moz-border-radius-bottomleft:0px;
   -moz-border-radius-bottomright:0px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
 }
 
 .main_tabnav a.active {
@@ -433,6 +448,10 @@ body a:hover {
   -moz-border-radius-topright:3px;
   -moz-border-radius-bottomleft:0px;
   -moz-border-radius-bottomright:0px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
 }
 
 .main_tabnav a.active:hover {
@@ -443,6 +462,10 @@ body a:hover {
   -moz-border-radius-topright:3px;
   -moz-border-radius-bottomleft:0px;
   -moz-border-radius-bottomright:0px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
 }
 
 .main_tabnav_content {
@@ -453,4 +476,6 @@ body a:hover {
 	z-index: 2;
 	-moz-border-radius-bottomleft:10px;
 	-moz-border-radius-bottomright:10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 }
