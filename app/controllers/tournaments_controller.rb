@@ -135,8 +135,8 @@ class TournamentsController < ApplicationController
   def generate_empty_schedule
     if @tournament.fields.size == 0
       flash[:warning] = "Musisz najpierw dodać do turnieju przynajmniej jedno boisko"
-    elsif @tournament.teams.size != @tournament.tournament_metadata.teams_count
-      flash[:warning] = "Liczba dodanych do turnieju drużyn nie zgadza się z zadeklarowaną"
+    #elsif @tournament.teams.size != @tournament.tournament_metadata.teams_count
+    #  flash[:warning] = "Liczba dodanych do turnieju drużyn nie zgadza się z zadeklarowaną"
     else
       @tournament.empty_schedule
       @tournament.save

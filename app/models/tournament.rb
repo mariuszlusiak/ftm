@@ -4,9 +4,9 @@ class Tournament < ActiveRecord::Base
   belongs_to :tournament_type
 
   has_one :tournament_metadata
+  
+  has_one :schedule
 
-  has_many :game_slots
-  has_many :games
   has_many :tournament_teams
   has_many :teams, :through => :tournament_teams
   has_many :tournament_fields
@@ -18,25 +18,13 @@ class Tournament < ActiveRecord::Base
       self.game_slots.destroy_all
       self.games.destroy_all
       teams_count = self.tournament_metadata.teams_count
-      games_same_teams_count = self.tournament_metadata.games_count
-      games_count = games_same_teams_count * teams_count * (teams_count - 1) / 2
+      games_count = teams_count * (teams_count - 1) / 2
       games_count.times do
         game_slot = GameSlot.new
         game_slot.start = self.start_date.to_datetime
         game_slot.end = game_slot.start + self.tournament_metadata.default_game_duration.minutes
         game_slot.field = self.fields.first
         self.game_slots << game_slot
-      end
-      i = 0
-      while i < teams_count
-        j = i + 1
-        while j < teams_count
-          games_same_teams_count.times do
-            self.games << create_game(teams[i], teams[j])
-          end
-          j += 1
-        end
-        i += 1
       end
     end
   end
@@ -116,12 +104,12 @@ class Tournament < ActiveRecord::Base
   end
 
   def benchmark
-    Benchmark.bm(1000) do |x|
-      x.report("round robin schedule") do
-        self.round_robin_schedule
-      end
+    Benchmark.bm(10) do |x|
       x.report("round robin ftm schedule") do
         self.round_robin_ftm_schedule
+      end
+      x.report("round robin schedule") do
+        self.round_robin_schedule
       end
     end
   end
