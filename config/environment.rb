@@ -48,3 +48,5 @@ Rails::Initializer.run do |config|
 end
 
 CalendarDateSelect.format = :iso_date
+
+DEFAULT_GAME_DURATION = 40

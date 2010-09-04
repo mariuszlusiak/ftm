@@ -296,8 +296,6 @@ body a:hover {
 #content #schedule .row {display:table-row;width:100%;}
 
 #content #schedule #game-slots {
-  border:1px solid;
-  __display:table-cell;
   __width:48%
 }
 
@@ -314,6 +312,8 @@ body a:hover {
 #content #schedule li.game-slot {border:1px solid;cursor:-moz-grab;}
 
 #content #play ul {list-style-type:none}
+
+#content .new-schedule-form {margin:20px;}
 
 #sidebar {
   background-color: #fff;

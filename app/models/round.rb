@@ -1,7 +1,7 @@
 class Round < ActiveRecord::Base
   
-  has_many :games_slots
+  belongs_to :schedule
+
   has_many :games
-  
   
 end

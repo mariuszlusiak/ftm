@@ -8,18 +8,7 @@ module GameSlotsHelper
       result += '] '
     end
     if edit
-      form_elements = ''
-      form = remote_form_for(game_slot) do |f|
-        form_elements += f.submit 'Zapisz'
-        form_elements += f.calendar_date_select(:start, :size => 13)
-        form_elements += f.calendar_date_select(:end, :size => 13)
-        form_elements += f.select(:field_id,
-          game_slot.tournament.fields.collect { |f| [ f.name, f.id ] }
-        )
-      end
-      result += form[0]
-      result += form_elements
-      result += form[1]
+      result << render(:partial => "/shared/game_slot_editable", :object => game_slot)
     else
       result += game_slot.field.name
       result += ' '

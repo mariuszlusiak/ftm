@@ -126,7 +126,7 @@ class TournamentsController < ApplicationController
   end
 
   def play
-    @table = Table.new @tournament.games
+    @table = Table.new @tournament.schedule.rounds.map { |r| r.games }.flatten
     respond_to do |format|
       format.html
     end

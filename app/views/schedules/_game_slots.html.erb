@@ -1,0 +1,6 @@
+<ul>
+  <%= 
+    render :partial => 'game_slot', :collection => game_slots,
+      :locals =>  { :enable_edit => enable_edit } 
+  %>
+</ul>

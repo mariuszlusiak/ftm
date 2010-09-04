@@ -1,0 +1,13 @@
+<h1>Harmonogram turnieju <%= @tournament.name %></h1>
+<div>
+  <%= link_to 'Powrót do turnieju', tournament_path(@tournament) %> |
+  <%= link_to "Edytuj", new_tournament_schedule_path(@tournament) %>
+</div>
+<div id='schedule'>
+  <div id='game-slots'>
+    <%= 
+      render :partial => 'game_slots', :object => @tournament.game_slots,
+        :locals => { :enable_edit => true } 
+    %>
+  </div>
+</div>

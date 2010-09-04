@@ -1,0 +1,11 @@
+<% game_slot = game_slot_editable %>
+<% remote_form_for(game_slot) do |f| %>
+  <%= f.submit 'Zapisz' %>
+  <%= f.calendar_date_select(:start, :size => 13) %>
+  <%= f.calendar_date_select(:end, :size => 13) %>
+  <%= 
+    f.select(:field_id,
+      game_slot.tournament.fields.collect { |f| [ f.name, f.id ] }
+    )
+  %>
+<% end %>

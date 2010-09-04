@@ -1,0 +1,12 @@
+<h1>Wygeneruj nowy harmonogram turnieju <%= @tournament.name %></h1>
+<div>
+  <%= link_to 'Powrót do harmonogramu', tournament_schedule_path(@tournament) %> 
+</div>
+<% 
+  form_for([@tournament, @schedule], 
+    :url => tournament_schedule_path(@tournament), 
+    :html => { :class => "new-schedule-form" }) do |f| 
+%>
+  <%= select_tag :schedule_type, @schedule_type_options %>
+  <%= f.submit "Wygeneruj" %>
+<% end %>

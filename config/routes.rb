@@ -26,7 +26,6 @@ ActionController::Routing::Routes.draw do |map|
 	       :manage_fields => :get,
 	       :add_field => :post,
 	       :remove_field => :post,
-	       :schedule => :get,
 	       :add_team => :post,
 	       :remove_team => :post,
 	       :generate_empty_schedule => :post,
@@ -38,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :tournaments do |tournaments|
     tournaments.resources :teams, :collection => { :manage_in_tournament => :get }
     tournaments.resources :fields, :collection => { :manage_in_tournament => :get }
+    tournaments.resource :schedule
   end  
     
 	map.resources :players,
