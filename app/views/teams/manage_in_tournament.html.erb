@@ -1,0 +1,11 @@
+<h1>Wybierz drużyny do turnieju <%= @tournament.name %></h1>
+<%= link_to 'Powrót do listy drużyn', tournament_teams_path(@tournament) %>
+<br /><br />
+<% @teams.each do |team| %>
+  <div id="team-in-tournament-<%= team.id %>">
+  <%= 
+    render(:partial => "team_in_tournament", :object => team,
+        :locals => { :tournament => @tournament })
+  %>
+  </div>
+<% end %>

@@ -107,6 +107,20 @@ body a:hover {
   background: #0e4f90;
 }
 
+#content .index-div-highlighted {
+  background: #4d4;
+  margin: 1px 0px;
+  padding: 5px;
+  position: relative;
+  -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#content .index-div-highlighted:hover {
+	color: #FFFFFF;
+  background: #4b4;
+}
+
 #content a.index-list {
   color: #333;
 }

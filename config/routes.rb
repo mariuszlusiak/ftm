@@ -19,22 +19,27 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   
 	map.resources :tournaments,
-    :member => {
-      :manage_type => :get,
-      :update_type => :post,
-      :manage_teams => :get,
-      :manage_fields => :get,
-      :add_field => :post,
-      :remove_field => :post,
-      :schedule => :get,
-      :add_team => :post,
-      :remove_team => :post,
-      :generate_empty_schedule => :post,
-      :generate_round_robin_schedule => :post,
-      :generate_round_robin_ftm_schedule => :post,
-      :play => :get
-    }
-  
+	     :member => {
+	       :manage_type => :get,
+	       :update_type => :post,
+	       :manage_teams => :get,
+	       :manage_fields => :get,
+	       :add_field => :post,
+	       :remove_field => :post,
+	       :schedule => :get,
+	       :add_team => :post,
+	       :remove_team => :post,
+	       :generate_empty_schedule => :post,
+	       :generate_round_robin_schedule => :post,
+	       :generate_round_robin_ftm_schedule => :post,
+	       :play => :get
+	     }
+    
+  map.resources :tournaments do |tournaments|
+    tournaments.resources :teams, :collection => { :manage_in_tournament => :get }
+    tournaments.resources :fields, :collection => { :manage_in_tournament => :get }
+  end  
+    
 	map.resources :players,
 		:member => {
 			:avatar => :get,

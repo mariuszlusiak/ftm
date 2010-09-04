@@ -1,37 +1,28 @@
-<% if show_page_info? %>
-	<div id="page-info">
-		Ta strona przedstawia szczegółowe dane turnieju.
-	</div>
-<% end %>
-<p>
-  <b>Nazwa:</b>
-  <%=h @tournament.name %>
-</p>
-
+<h1>Turniej <%= @tournament.name %></h1>
+<%= link_to 'Edytuj', edit_tournament_path(@tournament) %> |
+<%= link_to 'Drużyny', tournament_teams_path(@tournament) %> |
+<%= link_to 'Boiska', tournament_fields_path(@tournament) %> |
+<%= link_to 'Harmonogram', schedule_tournament_path(@tournament) %> |
+<%= link_to 'Graj', play_tournament_path(@tournament) %>
 <p>
   <b>Data rozpoczęcia:</b>
   <%=h @tournament.start_date %>
 </p>
-
 <p>
   <b>Data zakończenia:</b>
   <%=h @tournament.end_date %>
 </p>
-
+<% if @tournament.description.present? %>
 <p>
   <b>Opis:</b>
   <%=h @tournament.description %>
 </p>
-
+<% end %>
+<% if @tournament.organizer.present? %>
 <p>
   <b>Organizator:</b>
   <%=h @tournament.organizer %>
 </p>
+<% end %>
 
-<%= link_to 'Lista turniejów', tournaments_path %> |
-<%= link_to 'Edytuj', edit_tournament_path(@tournament) %> |
-<%#= link_to 'Typ turnieju', manage_type_tournament_path(@tournament) %> 
-<%= link_to 'Zarządzaj drużynami', manage_teams_tournament_path(@tournament) %> |
-<%= link_to 'Zarządzaj boiskami', manage_fields_tournament_path(@tournament) %> |
-<%= link_to 'Harmonogram', schedule_tournament_path(@tournament) %> |
-<%= link_to 'Graj', play_tournament_path(@tournament) %>
+

@@ -1,8 +1,9 @@
-<% if show_page_info? %>
-	<div id="page-info">
-		Ta strona przedstawia listę drużyn dodanych przez Ciebie do systemu.
-	</div>
+<% if @tournament %>
+  <h1>Lista drużyn zgłoszonych do turnieju <%= @tournament.name %></h1>
+  <%= link_to 'Powrót do turnieju', tournament_path(@tournament) %> |
+  <%= link_to 'Edytuj', manage_in_tournament_tournament_teams_path(@tournament) %> 
 <% end %>
+<br /><br />
 <% @teams.each do |team| %>
   <%= 
     link_to render_team_div(team), team_path(team),

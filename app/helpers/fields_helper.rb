@@ -18,4 +18,16 @@ module FieldsHelper
     result
   end
   
+  def field_in_tournament_div(field, tournament)
+    div_class = tournament.fields.include?(field) ? "index-div-highlighted" : "index-div"
+    div_class << " field"
+    %{
+      <div class='#{div_class}'>
+        <span class='headline'>
+          <span class='name'>#{h field.name}</span>
+        </span>
+      </div>
+    }
+  end
+  
 end

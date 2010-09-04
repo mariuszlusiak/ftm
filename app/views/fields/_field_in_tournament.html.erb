@@ -1,0 +1,11 @@
+<% field = field_in_tournament %>
+<%= 
+  link_to_remote field_in_tournament_div(field, tournament),
+    :url => {
+      :controller => :fields,
+      :action => :toggle_in_tournament,
+      :id => field.id,
+      :tournament_id => tournament.id
+    },
+    :method => :put
+%>

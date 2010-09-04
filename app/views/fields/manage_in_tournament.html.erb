@@ -1,0 +1,11 @@
+<h1>Wybierz boiska do turnieju <%= @tournament.name %></h1>
+<%= link_to 'Powrót do listy boisk', tournament_fields_path(@tournament) %>
+<br /><br />
+<% @fields.each do |field| %>
+  <div id="field-in-tournament-<%= field.id %>">
+  <%= 
+    render(:partial => "field_in_tournament", :object => field,
+        :locals => { :tournament => @tournament })
+  %>
+  </div>
+<% end %>

@@ -1,10 +1,17 @@
 class FieldsController < ApplicationController
 
   before_filter :login_required
-  before_filter :find_field, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_field, :only => [:show, :edit, :update, :destroy,
+    :toggle_in_tournament]
+  before_filter :find_tournament, :only => [:index, :manage_in_tournament,
+    :toggle_in_tournament]
 
   def index
-    @fields = current_user.fields
+    if @tournament
+      @fields = @tournament.fields
+    else
+      @fields = current_user.fields
+    end
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -59,6 +66,31 @@ class FieldsController < ApplicationController
       format.html { redirect_to(fields_url) }
     end
   end
+  
+  def manage_in_tournament
+    @fields = current_user.fields
+     respond_to do |format|
+       format.html
+     end
+  end
+  
+  def toggle_in_tournament
+	  if @tournament.fields.include? @field
+	    @tournament.fields.delete @field
+	  else
+	    @tournament.fields << @field  
+	  end
+	  @tournament.save
+	  respond_to do |format|
+	    format.js do
+	      render :update do |page|
+	        page.replace_html "field-in-tournament-#{@field.id}",
+	          render(:partial => "field_in_tournament", :object => @field,
+              :locals => { :tournament => @tournament })
+	      end
+	    end
+	  end
+  end
 
   private
 
@@ -66,5 +98,12 @@ class FieldsController < ApplicationController
       @field = Field.find params[:id]
       check_access_rights_to_resource @field
     end
+    
+    def find_tournament
+	    if params[:tournament_id]
+  	    @tournament = Tournament.find params[:tournament_id] 
+  	    check_access_rights_to_resource @tournament
+  	  end
+	  end
 
 end

@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
 	
   before_filter :login_required
   before_filter :find_tournament, :only => [:show, :edit, :update, :destroy, :manage_type,
-    :update_type, :manage_teams, :manage_fields, :play, :schedule,
+    :update_type, :teams, :edit_teams, :update_teams, :manage_fields, :play, :schedule,
     :generate_empty_schedule, :generate_round_robin_schedule,
     :generate_round_robin_ftm_schedule, :add_team, :remove_team, :add_field,
     :remove_field]
@@ -104,6 +104,12 @@ class TournamentsController < ApplicationController
           render :action => 'manage_tournament_type'
         end
       end
+    end
+  end
+  
+  def teams
+    respond_to do |format|
+      format.html
     end
   end
 

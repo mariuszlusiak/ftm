@@ -1,8 +1,9 @@
-<% if show_page_info? %>
-  <div id="page-info">
-    Ta strona przedstawia listę boisk dodanych przez Ciebie do systemu.
-  </div>
+<% if @tournament %>
+  <h1>Lista boisk zgłoszonych do turnieju <%= @tournament.name %></h1>
+  <%= link_to 'Powrót do turnieju', tournament_path(@tournament) %> |
+  <%= link_to 'Edytuj', manage_in_tournament_tournament_fields_path(@tournament) %> 
 <% end %>
+<br /><br />
 <% @fields.each do |field| %>
   <%=
     link_to render_field_div(field), field_path(field),

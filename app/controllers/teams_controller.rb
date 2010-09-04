@@ -3,9 +3,15 @@ class TeamsController < ApplicationController
   # GET /teams.xml
 
   before_filter :login_required
+  before_filter :find_tournament, :only => [:index, :manage_in_tournament,
+    :toggle_in_tournament]
 
   def index
-    @teams = current_user.teams
+    if @tournament
+      @teams = @tournament.teams
+    else
+      @teams = current_user.teams
+    end
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -36,7 +42,7 @@ class TeamsController < ApplicationController
 			format.html # edit.html.erb
 		end
   end
-
+  
   # POST /teams
   # POST /teams.xml
   def create
@@ -69,11 +75,13 @@ class TeamsController < ApplicationController
 		params[:team].delete(:"year_founded(3i)")
     @team = Team.find(params[:id])
     respond_to do |format|
-      if @team.update_attributes(params[:team])
-        flash[:notice] = 'Dane drużyny zostały uaktualnione.'
-        format.html { redirect_to team_path(@team) }
-      else
-        format.html { render :action => "edit" }
+      format.html do
+        if @team.update_attributes(params[:team])
+          flash[:notice] = 'Dane drużyny zostały uaktualnione.'
+          redirect_to team_path(@team)
+        else
+          render :action => "edit"
+        end  
       end
     end
   end
@@ -89,6 +97,32 @@ class TeamsController < ApplicationController
   end
 
 	# not RESTful
+	
+	def manage_in_tournament
+     @teams = current_user.teams
+     respond_to do |format|
+       format.html
+     end
+   end
+	
+	def toggle_in_tournament
+	  team = Team.find params[:id]
+	  if @tournament.teams.include? team
+	    @tournament.teams.delete team
+	  else  
+	    @tournament.teams << team
+	  end
+	  @tournament.save
+	  respond_to do |format|
+	    format.js do
+	      render :update do |page|
+	        page.replace_html "team-in-tournament-#{team.id}",
+	          render(:partial => "team_in_tournament", :object => team,
+              :locals => { :tournament => @tournament })
+	      end
+	    end
+	  end
+	end
 	
 	def manage_players
 		@team = Team.find(params[:id])
@@ -172,5 +206,14 @@ class TeamsController < ApplicationController
 			end
 		end
 	end
+	
+	private
+	
+	  def find_tournament
+	    if params[:tournament_id]
+  	    @tournament = Tournament.find params[:tournament_id] 
+  	    check_access_rights_to_resource @tournament
+  	  end
+	  end
 
 end
