@@ -14,18 +14,10 @@
       <%= text_field_tag :away_team_score, @away_team_score, :size => 1 %>
       <%#= render_goals @game %>
     </h3>
-    <% unless @use_default_pointing_system %>
-      <p>
-        <%= label_tag "Punkty dla gospodarzy" %>
-        <%= text_field_tag :home_team_points, @home_team_points, :size => 1 %>
-        <%= label_tag "Punkty dla gości" %>
-        <%= text_field_tag :away_team_points, @away_team_points, :size => 1 %>
-      </p>
-    <% end %>
     <p>
       <%= f.submit 'Zakończ mecz' %>
       <br />
-      <%= link_to 'Powrót', play_tournament_path(@game.tournament) %>
+      <%= link_to 'Powrót', play_tournament_path(@game.game_slot.tournament) %>
     </p>
   <% end %>
   <h3>Składy</h3>

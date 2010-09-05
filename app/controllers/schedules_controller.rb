@@ -27,6 +27,14 @@ class SchedulesController < ApplicationController
       @tournament.schedule = Schedule.new
       @tournament.schedule.round_robin
       @tournament.fill_game_slots
+    when "Round-Robin 2"
+      @tournament.schedule = Schedule.new
+      @tournament.schedule.round_robin_2
+      @tournament.fill_game_slots
+    when "Ftm"
+      @tournament.schedule = Schedule.new
+      @tournament.schedule.ftm
+      @tournament.fill_game_slots
     end
     @tournament.save
     respond_to do |format|

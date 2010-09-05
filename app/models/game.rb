@@ -17,5 +17,9 @@ class Game < ActiveRecord::Base
     result.away_team_points = away_team_points
     result.finished = true
   end
+  
+  def teams
+    [home_team, away_team]
+  end
 
 end

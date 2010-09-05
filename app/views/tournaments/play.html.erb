@@ -1,12 +1,14 @@
-  <div id="table">
-    <h3>Tabela</h3>
+<h1>Turniej <%= @tournament.name %></h1>
+<div>
+  <%= link_to 'Powrót do turnieju', tournament_path(@tournament) %>
+</div>
+<div id="table">
+  <h3>Tabela</h3>
+  <div>
     <%= render :partial => 'table', :object => @table %>
   </div>
   <div id="play-games">
     <h3>Mecze</h3>
-    <%= render :partial => 'play_games', :object => @tournament.games %>
+    <%= render :partial => 'play_games', :object => @games %>
   </div>
-</div>
-<div>
-  <%= link_to "Szczegóły turnieju", tournament_path(@tournament) %>
 </div>

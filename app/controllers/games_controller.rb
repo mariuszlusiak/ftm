@@ -21,7 +21,7 @@ class GamesController < ApplicationController
       away_team_points
     @game.game_result.save
     respond_to do |format|
-      format.html { redirect_to(play_tournament_path(@game.tournament)) }
+      format.html { redirect_to(play_tournament_path(@game.game_slot.tournament)) }
     end
   end
 
@@ -38,7 +38,6 @@ class GamesController < ApplicationController
       @home_team_points = 0
       @away_team_points = 0
     end
-    @use_default_pointing_system = @game.tournament.user.use_default_pointing_system
     respond_to do |format|
       format.html
     end
