@@ -1,4 +1,8 @@
 module TournamentsHelper
+  
+  def render_schedule(tournament)
+    render :partial => "/tournaments/schedule", :object => tournament
+  end
 
   def render_tournament_div(tournament)
     result = %{

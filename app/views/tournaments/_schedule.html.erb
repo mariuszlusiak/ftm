@@ -1,0 +1,17 @@
+<% tournament = schedule %>
+<%
+  rounds_no = tournament.teams.size - 1
+  games_per_round = tournament.teams.size / 2
+%>
+<% rounds_no.times do |i| %>
+  <h3>Kolejka <%= (i + 1).to_s %></h3>
+  <ul>
+    <% games_per_round.times do |j| %>
+      <%= 
+        render :partial => "/tournaments/game_slot", 
+          :object => tournament.game_slots[i * games_per_round + j],
+          :locals => { :enable_edit => true }
+      %>
+    <% end %>
+  </ul>
+<% end %>

@@ -4,10 +4,5 @@
   <%= link_to "Edytuj", new_tournament_schedule_path(@tournament) %>
 </div>
 <div id='schedule'>
-  <div id='game-slots'>
-    <%= 
-      render :partial => 'game_slots', :object => @tournament.game_slots,
-        :locals => { :enable_edit => true } 
-    %>
-  </div>
+  <%= render_schedule @tournament %>
 </div>

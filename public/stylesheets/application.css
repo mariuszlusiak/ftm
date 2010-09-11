@@ -307,10 +307,6 @@ body a:hover {
 
 #content #schedule ul {list-style-type:none;}
 
-#content #schedule li.game {border:1px solid;cursor:-moz-grab;}
-
-#content #schedule li.game-slot {border:1px solid;cursor:-moz-grab;}
-
 #content #play ul {list-style-type:none}
 
 #content .new-schedule-form {margin:20px;}
