@@ -4,6 +4,6 @@
 	<% if with_team %>
 		<%= "(#{player.team.name})" %>
 	<% end %>
-	<%= tooltip :partial => 'player_tooltip', :object => player %>
+	<%#= tooltip :partial => 'player_tooltip', :object => player %>
+  <%= draggable_element("player-#{player.id}", :revert => true) %>
 </li>
-<%= draggable_element("player-#{player.id}", :revert => true) %>

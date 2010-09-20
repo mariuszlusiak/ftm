@@ -20,6 +20,10 @@ class SchedulesController < ApplicationController
   
   def create
     @tournament.schedule.destroy if @tournament.schedule
+    if @tournament.teams.size % 2 > 0
+      t = Team.new :name => "Pauza", :user => @tournament.user
+      @tournament.teams.unshift t
+    end
     case params[:schedule_type]
     when "Pusty harmonogram"
       @tournament.empty_schedule

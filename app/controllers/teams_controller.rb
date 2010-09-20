@@ -110,11 +110,11 @@ class TeamsController < ApplicationController
 	  if @tournament.teams.include? team
 	    @tournament.teams.delete team
 	    @tournament.game_slots.destroy_all
-	    @touranemnt.schedule.destroy if @tournament.schedule
+	    @tournament.schedule.destroy if @tournament.schedule
 	  else  
 	    @tournament.teams << team
 	    @tournament.game_slots.destroy_all
-	    @touranemnt.schedule.destroy if @tournament.schedule
+	    @tournament.schedule.destroy if @tournament.schedule
 	  end
 	  @tournament.save
 	  respond_to do |format|
