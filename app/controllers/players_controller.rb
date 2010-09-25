@@ -1,7 +1,4 @@
-class PlayersController < ApplicationController
-
-	require 'will_paginate'
-	
+class PlayersController < ApplicationController	
   before_filter :login_required
 
   def index

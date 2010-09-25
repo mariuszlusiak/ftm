@@ -1,3 +1,4 @@
 *.log
 public/avatars/*
 .rvmrc
+config/database.yml
